@@ -5,14 +5,14 @@ const Navbar = () => {
 
 
   const navOption = <>
-  <li><NavLink>Home</NavLink></li>
-  <li><NavLink>Add Articles</NavLink></li>
-  <li><NavLink>All Articles</NavLink></li>
-    <li><NavLink>Subscription</NavLink></li>
+  <li><NavLink to='/'>Home</NavLink></li>
+  <li><NavLink to='/addArticles'>Add Articles</NavLink></li>
+  <li><NavLink to='/allArticles'>All Articles</NavLink></li>
+    <li><NavLink to='/subscription'>Subscription</NavLink></li>
     {/* TODO: use condition for dashboard */}
   <li><NavLink>Dashboard</NavLink></li>
-  <li><NavLink>My Articles</NavLink></li>
-  <li><NavLink>Premium Articles</NavLink></li>
+  <li><NavLink to='/myArticles'>My Articles</NavLink></li>
+  <li><NavLink to='/premiumArticles'>Premium Articles</NavLink></li>
  
   </>
   return (
