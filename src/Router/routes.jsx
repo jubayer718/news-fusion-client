@@ -6,6 +6,8 @@ import AllArticles from "../AllComponents/AllArticles/AllArticles";
 import Subscription from "../AllComponents/Subscription/Subscription";
 import MyArticles from "../AllComponents/MyArticles/MyArticles";
 import PremiumArticles from "../AllComponents/PremiumArticles/PremiumArticles";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 export const routes = createBrowserRouter([
   {
@@ -24,7 +26,15 @@ export const routes = createBrowserRouter([
       }, {
         path: 'subscription',
         element:<Subscription></Subscription>
-      }, {
+      },
+      {
+        path: 'login',
+        element: <Login></Login>,
+        
+      },{
+        path: 'register',
+        element:<Register></Register>
+      },{
         path: 'myArticles',
         element:<MyArticles></MyArticles>
       }, {
