@@ -5,14 +5,21 @@ import App from './App.jsx'
 import { RouterProvider } from 'react-router-dom'
 import { routes } from './Router/routes.jsx'
 import AuthProvider from './Provider/AuthProvider.jsx'
-import PrivateRoute from './Router/PrivateRoute/PrivateRoute.jsx'
+import {
+  QueryClient,
+  QueryClientProvider,
+ 
+} from '@tanstack/react-query'
 
+const queryClient = new QueryClient()
 createRoot(document.getElementById('root')).render(
   <StrictMode>
    
        <AuthProvider>
-
+      <QueryClientProvider client={queryClient}>
+        
    <RouterProvider router={routes}></RouterProvider>
+  </QueryClientProvider>
     </AuthProvider>
    
   </StrictMode>,

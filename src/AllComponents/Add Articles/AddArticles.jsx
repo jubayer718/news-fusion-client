@@ -1,17 +1,21 @@
 
 import { Controller, useForm } from 'react-hook-form';
 import Select from 'react-select';
+import useAxiosPublic from '../../axiosPublic/UseAxiosPublic';
+import usePublisher from '../../Hooks/usePublisher';
+
 
 
 const AddArticles = () => {
-
+  const axiosPublic = useAxiosPublic();
+const [publisher,refetch]=usePublisher()
   const {
     register,
     formState: { errors },
     handleSubmit,
     control
   } = useForm()
-
+  console.log(publisher);
   const onSubmit = (data) => {
     console.log(data);
 
@@ -41,7 +45,15 @@ const AddArticles = () => {
               <label className="label">
                 <span className="label-text">Publisher</span>
               </label>
-              <input {...register('publisher', { required: true })} type="text" placeholder="publisher" className="input input-bordered" required />
+              {/* <input {...register('publisher', { required: true })} type="text" placeholder="publisher" className="input input-bordered" required /> */}
+              <select className="select select-bordered w-full" {...register("publisher", { required: "Publisher is required" })}>
+                <option value='' disabled>Select a Publisher</option>
+                {
+                  publisher.map((pub) => (
+                    <option key={pub._id}>{ pub.publisher}</option>
+                  ))
+                }
+              </select>
 
             </div>
             <div>
