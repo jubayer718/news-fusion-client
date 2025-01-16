@@ -3,15 +3,17 @@ import { Link, NavLink } from 'react-router-dom';
 import UseAuth from '../../Hooks/UseAuth';
 
 const Navbar = () => {
-  const { user,handleLogOut } = UseAuth();
+  const { user, handleLogOut } = UseAuth();
+  
 
+  const isAdmin = true;
   const navOption = <>
   <li><NavLink to='/'>Home</NavLink></li>
   <li><NavLink to='/addArticles'>Add Articles</NavLink></li>
   <li><NavLink to='/allArticles'>All Articles</NavLink></li>
     <li><NavLink to='/subscription'>Subscription</NavLink></li>
     {/* TODO: use condition for dashboard */}
-  <li><NavLink>Dashboard</NavLink></li>
+  {isAdmin&&<li><NavLink to='/dashboard'>Dashboard</NavLink></li>}
   <li><NavLink to='/myArticles'>My Articles</NavLink></li>
   <li><NavLink to='/premiumArticles'>Premium Articles</NavLink></li>
  

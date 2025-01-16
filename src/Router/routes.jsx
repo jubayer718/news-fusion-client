@@ -8,6 +8,10 @@ import MyArticles from "../AllComponents/MyArticles/MyArticles";
 import PremiumArticles from "../AllComponents/PremiumArticles/PremiumArticles";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import Dashboard from "../Dashboard/Dashboard";
+import AllUsers from "../Dashboard/AllUsers";
+import AddPublisher from "../Dashboard/AddPublisher";
 
 export const routes = createBrowserRouter([
   {
@@ -19,7 +23,7 @@ export const routes = createBrowserRouter([
         element: <Home></Home>
       }, {
         path: 'addArticles',
-        element:<AddArticles></AddArticles>
+        element:<PrivateRoute><AddArticles></AddArticles></PrivateRoute>
       }, {
         path: 'allArticles',
         element:<AllArticles></AllArticles>
@@ -40,6 +44,22 @@ export const routes = createBrowserRouter([
       }, {
         path: 'premiumArticles',
         element:<PremiumArticles></PremiumArticles>
+      }
+    ]
+  }, {
+    path: '/dashboard',
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: 'allUsers',
+        element:<AllUsers></AllUsers>
+      },
+      {
+        path: 'allArticles',
+        element:<AllArticles></AllArticles>
+      }, {
+        path: 'addPublishers',
+        element:<AddPublisher></AddPublisher>
       }
     ]
   }
