@@ -26,10 +26,10 @@ export const routes = createBrowserRouter([
         element:<PrivateRoute><AddArticles></AddArticles></PrivateRoute>
       }, {
         path: 'allArticles',
-        element:<AllArticles></AllArticles>
+        element:<PrivateRoute><AllArticles></AllArticles></PrivateRoute>
       }, {
         path: 'subscription',
-        element:<Subscription></Subscription>
+        element:<PrivateRoute><Subscription></Subscription></PrivateRoute>
       },
       {
         path: 'login',
