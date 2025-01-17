@@ -3,11 +3,17 @@ import { Controller, useForm } from 'react-hook-form';
 import Select from 'react-select';
 import useAxiosPublic from '../../axiosPublic/UseAxiosPublic';
 import usePublisher from '../../Hooks/usePublisher';
+import useAxiosSecure from '../../useAxiosSecure/UseAxiosSecure';
+import UseAuth from '../../Hooks/UseAuth';
+import Swal from 'sweetalert2';
 
 
-
-const AddArticles = () => {
-  const axiosPublic = useAxiosPublic();
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+ const AddArticles = () => {
+   const axiosPublic = useAxiosPublic();
+   const axiosSecure = useAxiosSecure();
+   const { user } = UseAuth();
 const [publisher,refetch]=usePublisher()
   const {
     register,
@@ -15,10 +21,39 @@ const [publisher,refetch]=usePublisher()
     handleSubmit,
     control
   } = useForm()
-  console.log(publisher);
-  const onSubmit = (data) => {
-    console.log(data);
+  // console.log(publisher);
+  const onSubmit = async(data) => { 
+    // console.log(data);
+    const image_file = { image: data.image[0] }
+    const res = await axiosPublic.post(image_hosting_api, image_file, {
+      headers: {
+        'Content-Type':'multipart/form-data',
+      }
+    })
+    const articleInfo = {
+      title: data.title,
+      publisher: data.publisher,
+      tags: data.tags,
+      description: data.description,
+      image: res.data.data.display_url,
+      email: user?.email,
+      status:'pending'
 
+    }
+    // console.log(articleInfo);
+    // console.log(res);
+    if (res.data.success) {
+      const res = await axiosSecure.post('/articles', articleInfo);
+      if (res.data.insertedId) {
+       Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title:`${data.title} is added success`,
+  showConfirmButton: false,
+  timer: 1500
+});
+     }
+    }
 
   }
    const tagOptions = [
@@ -59,12 +94,13 @@ const [publisher,refetch]=usePublisher()
             <div>
               <label className="block mb-1 ">Tags</label>
               <Controller
-                name='tag'
+                name='tags'
                 control={control}
+                 
                 rules={{ required: 'Please select at least one tag' }}
                 render={({ field }) => (
                   <Select
-                {...field}
+                    {...field}
                 options={tagOptions}
                     isMulti
                     defaultValue={[tagOptions[2], tagOptions[3]]}
@@ -91,7 +127,16 @@ const [publisher,refetch]=usePublisher()
               {errors.description.message}
             </span>
           )}
-        </div>
+            </div>
+            <div>
+               <label className="block mb-1 font-medium">choose a file</label>
+              <input {...register('image', { required: true })} type="file" className="file-input w-full " />
+            {errors.image && (
+            <span className="text-red-500 text-sm">
+              {errors.image.message}
+            </span>
+          )}
+            </div>
 
             <div className="form-control mt-6">
               <button type='submit' className="btn btn-primary">Submit</button>
