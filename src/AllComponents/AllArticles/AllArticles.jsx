@@ -78,6 +78,21 @@ const AllArticles = () => {
   }
 });
   }
+
+  // make article to premium
+  const onMakePremium = async(id) => {
+    const { data } = await axiosSecure.patch(`/status/makePremium/${id}`)
+    if (data.modifiedCount > 0) {
+      refetch()
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "this article now premium",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
+  }
   return (
     <div>
       <SectionTitle heading={'All Articles'} subHeading={'Explore a Wide Range of Topics and Insights'}></SectionTitle>
@@ -99,7 +114,7 @@ const AllArticles = () => {
           <tbody>
             {articles.map((article) => (
               <tr key={article._id} className="hover:bg-gray-50">
-                <td className="border border-gray-200 p-2">{article.title}</td>
+                <td className="border  border-gray-200 p-2">{article.title}</td>
                 <td className="border border-gray-200 p-2">
                   <div className="flex items-center space-x-3">
                     <img
@@ -163,11 +178,14 @@ const AllArticles = () => {
                   >
                     Delete
                   </button>
+                  {/* make premium article */}
                   <button
                     className="btn btn-sm btn-info w-full"
-                  // onClick={() => onMakePremium(article._id)}
+                    onClick={() => onMakePremium(article._id)}
+                    disabled={article.isPremium}
                   >
-                    Make Premium
+                    {article.isPremium? 'Premium':'  Make Premium'}
+                  
                   </button>
                 </td>
               </tr>
