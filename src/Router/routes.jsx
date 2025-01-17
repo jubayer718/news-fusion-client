@@ -12,6 +12,7 @@ import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import Dashboard from "../Dashboard/Dashboard";
 import AllUsers from "../Dashboard/AllUsers";
 import AddPublisher from "../Dashboard/AddPublisher";
+import AdminRoute from "./AdminRoute/AdminRoute";
 
 export const routes = createBrowserRouter([
   {
@@ -52,14 +53,14 @@ export const routes = createBrowserRouter([
     children: [
       {
         path: 'allUsers',
-        element:<AllUsers></AllUsers>
+        element:<AdminRoute><AllUsers></AllUsers></AdminRoute>
       },
       {
         path: 'allArticles',
-        element:<AllArticles></AllArticles>
+        element:<AdminRoute><AllArticles></AllArticles></AdminRoute>
       }, {
         path: 'addPublishers',
-        element:<AddPublisher></AddPublisher>
+        element:<AdminRoute><AddPublisher></AddPublisher></AdminRoute>
       }
     ]
   }
