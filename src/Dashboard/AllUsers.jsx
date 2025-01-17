@@ -47,8 +47,8 @@ const AllUsers = () => {
               <th></th>
               <th>Name</th>
               <th>Email</th>
+              <th>Profile Pic</th>
               <th>Role</th>
-              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -59,11 +59,12 @@ const AllUsers = () => {
                   <th>{idx + 1}</th>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
-                  <td className=' '>{user.role==='admin'?'admin':<button onClick={()=>makeAdmin(user)} className='btn bg-orange-600 '><FaUsers className='text-2xl'></FaUsers></button> }</td>
                   <td>
-                    <button onClick={() => handleDelete(user)} className="btn btn-ghost btn-lg"><FaTrash className='text-red-600'></FaTrash></button>
-
+                    {/* <button onClick={() => handleDelete(user)} className="btn btn-ghost btn-lg"><FaTrash className='text-red-600'></FaTrash></button> */}
+                <img className='w-16 h-16 rounded-full' src={user?.picPro} alt="" />
                   </td>
+                  <td className=' '>{user.role==='admin'?'admin':<button onClick={()=>makeAdmin(user)} className='btn bg-orange-600 '><FaUsers className='text-2xl'></FaUsers></button> }</td>
+                  
                 </tr>
               ))
             }

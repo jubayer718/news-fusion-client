@@ -14,6 +14,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
    const axiosPublic = useAxiosPublic();
    const axiosSecure = useAxiosSecure();
    const { user } = UseAuth();
+   console.log(user);
 const [publisher,refetch]=usePublisher()
   const {
     register,
@@ -36,11 +37,17 @@ const [publisher,refetch]=usePublisher()
       tags: data.tags,
       description: data.description,
       image: res.data.data.display_url,
-      email: user?.email,
+      author: {
+        
+        email: user?.email,
+       name: user?.displayName,
+        photo:user?.photoURL,
+      },
+      postedDate:new Date(),
       status:'pending'
 
     }
-    // console.log(articleInfo);
+    console.log(articleInfo);
     // console.log(res);
     if (res.data.success) {
       const res = await axiosSecure.post('/articles', articleInfo);

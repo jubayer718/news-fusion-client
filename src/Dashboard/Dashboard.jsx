@@ -3,7 +3,7 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
   return (
-    <div className="flex flex-col lg:flex-row gap-5 w-10/12 mx-auto">
+    <div className="flex flex-col lg:flex-row gap-5 w-11/12 mx-auto">
       <div>
         <ul className="menu bg-orange-400 min-h-screen  w-56">
   <li className="menu-title">Admin </li>

@@ -7,6 +7,7 @@ import Social from '../social/Social';
 
 const Register = () => {
   const { user, createUser, updateUserProfile } = UseAuth();
+
   const axiosPublic = useAxiosPublic();
   const {
     register,
@@ -18,7 +19,8 @@ const Register = () => {
   const onSubmit = (data) => {
     const userInfo = {
       name: data.name,
-      email: data.email
+      email: data.email,
+      picPro: data.photo,
     }
     console.log(data),
 
