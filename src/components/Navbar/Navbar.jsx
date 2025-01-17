@@ -11,12 +11,12 @@ const Navbar = () => {
   const navOption = <>
   <li><NavLink to='/'>Home</NavLink></li>
   <li><NavLink to='/addArticles'>Add Articles</NavLink></li>
-  <li><NavLink to='/allArticles'>All Articles</NavLink></li>
+  <li><NavLink to='/allArticle'>All Articles</NavLink></li>
     <li><NavLink to='/subscription'>Subscription</NavLink></li>
-    {/* done: use condition for dashboard */}
-  {isAdmin&&<li><NavLink to='/dashboard/allArticles'>Dashboard</NavLink></li>}
   <li><NavLink to='/myArticles'>My Articles</NavLink></li>
   <li><NavLink to='/premiumArticles'>Premium Articles</NavLink></li>
+    {/* done: use condition for dashboard */}
+  {isAdmin&&(<li><NavLink to='/dashboard/allArticles'>Dashboard</NavLink></li>)}
  
   </>
   return (
