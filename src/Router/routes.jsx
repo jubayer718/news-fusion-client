@@ -16,6 +16,7 @@ import AddPublisher from "../Dashboard/AddPublisher";
 import AdminRoute from "./AdminRoute/AdminRoute";
 import AdminAllArticles from "../Dashboard/AdminAllArticle";
 import ArticleDetails from "../pages/ArticleDetails/ArticleDetails";
+import PaymentPage from "../pages/PaymentPage";
 
 export const routes = createBrowserRouter([
   {
@@ -31,7 +32,11 @@ export const routes = createBrowserRouter([
       }, {
         path: 'allArticle',
         element:<AllArticles></AllArticles>
-      }, {
+      },
+      {
+        path: 'payment',
+        element:<PrivateRoute><PaymentPage></PaymentPage></PrivateRoute>
+      },{
         path: 'subscription',
         element:<PrivateRoute><Subscription></Subscription></PrivateRoute>
       }, {

@@ -84,9 +84,9 @@ const AllArticles = () => {
                 aria-label='Enter article Title'
               />
                 
-              <button className='px-1 md:px-4 py-3 text-sm font-medium tracking-wider  uppercase transition-colors duration-300 transform bg-orange-400 rounded-md hover:bg-gray-300 focus:bg-gray-600 focus:outline-none'>
+              {/* <button className='px-1 md:px-4 py-3 text-sm font-medium tracking-wider  uppercase transition-colors duration-300 transform bg-orange-400 rounded-md hover:bg-gray-300 focus:bg-gray-600 focus:outline-none'>
                 Search
-              </button>
+              </button> */}
             </div>
           </form>
           {/* <div>
@@ -104,7 +104,7 @@ const AllArticles = () => {
           </div> */}
           <button onClick={handleReset} className='btn bg-orange-400'>Reset</button>
         </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-3">
         {approvedArticles.map(article =>
           <ArticlesCard
             key={article._id}
