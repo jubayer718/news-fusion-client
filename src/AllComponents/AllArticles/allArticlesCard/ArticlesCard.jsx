@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import useSubscription from '../../../Hooks/useSubscription';
 
 const ArticlesCard = ({ article }) => {
-  const {_id,title,tags,publisher,image,description,isPremium}=article
+  const { _id, title, tags, publisher, image, description, isPremium } = article;
+
+  // const [hasSubscription, setHasSubscription] = useState(false);
   // console.log(tags);
-  const hasSubscription=true
+  // const hasSubscription=true
+  const [hasSubscription,refetch]=useSubscription()
+
+  const isPremiumUser=hasSubscription.premiumTaken
+
+
+
+
   return (
       <div
       className={`card ${
@@ -40,15 +50,15 @@ const ArticlesCard = ({ article }) => {
        
       >
         <button
-          disabled={isPremium && !hasSubscription}
+          disabled={isPremium && !isPremiumUser}
           
           className={`w-full py-2 mt-4 rounded ${
-          isPremium && !hasSubscription
+          isPremium && !isPremiumUser
             ? 'bg-gray-300 text-gray-600 cursor-not-allowed'
             : isPremium
             ? 'bg-black text-white'
             : 'bg-blue-500 text-white'
-        } hover:opacity-80`}>    {isPremium ? (hasSubscription ? 'Read Premium' : 'Subscribe to Access') : 'Read More'}</button>
+        } hover:opacity-80`}>    {isPremium ? (isPremiumUser ? 'Read Premium' : 'Subscribe to Access') : 'Read More'}</button>
       
       </Link>
     </div>
