@@ -4,9 +4,10 @@ import useAxiosSecure from "../../useAxiosSecure/UseAxiosSecure";
 import UseAuth from "../../Hooks/UseAuth";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { use } from "react";
 
 
-const CheckoutForm = ({ price }) => {
+const CheckoutForm = ({subscriptionPeriod, price }) => {
   const { user } = UseAuth();
   const stripe = useStripe();
   const elements = useElements();
@@ -63,8 +64,9 @@ const CheckoutForm = ({ price }) => {
       console.log(confirmError);
     } else {
      if (paymentIntent.status === 'succeeded') {
-        console.log('paymentIntent', paymentIntent);
-       
+        // console.log('paymentIntent', paymentIntent);
+     const {data}=await axiosSecure.put(`/subscribe/${user.email}`, {  duration:subscriptionPeriod });
+      //  console.log(data);
         // now save the payment in the database
         const payment = {
           email: user.email,
@@ -87,7 +89,7 @@ const CheckoutForm = ({ price }) => {
   timer: 1500
 });
         }
-      //  navigate('/dashboard/paymentHistory')
+       navigate('/')
         
       }
     }

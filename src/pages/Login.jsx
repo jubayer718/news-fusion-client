@@ -4,9 +4,13 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Social from '../social/Social';
 import UseAuth from '../Hooks/UseAuth';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../useAxiosSecure/UseAxiosSecure';
+import useAxiosPublic from '../axiosPublic/UseAxiosPublic';
 
 const Login = () => {
-  const { handleLogin,updateUserProfile } = UseAuth();
+  const { handleLogin, updateUserProfile, user } = UseAuth();
+  
+  const axiosPublic=useAxiosPublic()
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -19,11 +23,17 @@ const Login = () => {
     // console.log(data)
     handleLogin(data.email, data.password)
       .then(res => {
-        console.log(res);
+        // console.log(res.user?.email);
         updateUserProfile(res.user.displayName, res.user.photoURL)
-          .then( () => {
-
-            
+          .then(async () => {
+             const userInfo = {
+      // name: data.name,
+      email: res.user?.email,
+      // picPro: data.photo,
+      // premiumTaken: null,
+    }
+            const {data}=await axiosPublic.post('/users',userInfo)
+            console.log(data);
               Swal.fire({
                 position: "top-end",
                 icon: "success",

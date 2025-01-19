@@ -11,7 +11,7 @@ const Subscription = () => {
 
  // Subscription periods and prices
   const subscriptionOptions = [
-    { value: '1-minute', label: '1 Minute', price: 0 }, // Free for testing
+    { value: '1-minute', label: '1 Minute', price: 1 }, 
     { value: '5-days', label: '5 Days', price: 5 },
     { value: '10-days', label: '10 Days', price: 10 },
   ];

@@ -21,6 +21,7 @@ const Register = () => {
       name: data.name,
       email: data.email,
       picPro: data.photo,
+      premiumTaken: null,
     }
     console.log(data),
 
