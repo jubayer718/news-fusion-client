@@ -6,14 +6,14 @@ import UseAuth from "./UseAuth";
 const useMyArticle = () => {
   const axiosSecure = useAxiosSecure();
   const {user}=UseAuth()
-  const { data: myArticles = [] } = useQuery({
+  const { refetch,data: myArticles = [] } = useQuery({
     queryKey: ['article'],
     queryFn: async () => {
       const res = await axiosSecure.get(`/myArticles/${user.email}`);
       return res.data
     }
   })
-  return [myArticles]
+  return [myArticles,refetch]
 };
 
 export default useMyArticle;
