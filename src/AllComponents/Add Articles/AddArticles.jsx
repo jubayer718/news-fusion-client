@@ -14,7 +14,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
    const axiosPublic = useAxiosPublic();
    const axiosSecure = useAxiosSecure();
    const { user } = UseAuth();
-   console.log(user);
+  
 const [publisher,refetch]=usePublisher()
   const {
     register,
@@ -45,7 +45,8 @@ const [publisher,refetch]=usePublisher()
       },
       postedDate: new Date(),
       viewCount:0,
-      status:'pending'
+      status: 'pending',
+      isPremium:false
 
     }
     console.log(articleInfo);
