@@ -40,8 +40,9 @@ export const routes = createBrowserRouter([
         path: 'subscription',
         element:<PrivateRoute><Subscription></Subscription></PrivateRoute>
       }, {
-        path: 'articleDetails',
-        element:<PrivateRoute><ArticleDetails></ArticleDetails></PrivateRoute>
+        path: 'articleDetails/:id',
+        element: <PrivateRoute><ArticleDetails></ArticleDetails></PrivateRoute>,
+        loader:({params})=>fetch(`http://localhost:9000/articles/${params.id}`) 
       },
       {
         path: 'login',

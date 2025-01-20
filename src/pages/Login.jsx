@@ -33,7 +33,7 @@ const Login = () => {
       // premiumTaken: null,
     }
             const {data}=await axiosPublic.post('/users',userInfo)
-            console.log(data);
+            // console.log(data);
               Swal.fire({
                 position: "top-end",
                 icon: "success",

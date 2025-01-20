@@ -46,8 +46,7 @@ const ArticlesCard = ({ article }) => {
 
       {/* Action Link */}
       <Link
-        to='/articleDetails'
-       
+        to={`/articleDetails/${_id}`}
       >
         <button
           disabled={isPremium && !isPremiumUser}

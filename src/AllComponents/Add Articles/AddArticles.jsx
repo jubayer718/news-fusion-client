@@ -43,7 +43,8 @@ const [publisher,refetch]=usePublisher()
        name: user?.displayName,
         photo:user?.photoURL,
       },
-      postedDate:new Date(),
+      postedDate: new Date(),
+      viewCount:0,
       status:'pending'
 
     }
