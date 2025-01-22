@@ -50,7 +50,6 @@ const [publisher,refetch]=usePublisher()
 
     }
     console.log(articleInfo);
-    // console.log(res);
     if (res.data.success) {
       const res = await axiosSecure.post('/articles', articleInfo);
       if (res.data.insertedId) {
