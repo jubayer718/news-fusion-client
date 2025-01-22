@@ -17,6 +17,7 @@ import AdminRoute from "./AdminRoute/AdminRoute";
 import AdminAllArticles from "../Dashboard/AdminAllArticle";
 import ArticleDetails from "../pages/ArticleDetails/ArticleDetails";
 import PaymentPage from "../pages/PaymentPage";
+import UpdateArticle from "../pages/UpdateArticle/UpdateArticle";
 
 export const routes = createBrowserRouter([
   {
@@ -45,6 +46,11 @@ export const routes = createBrowserRouter([
         loader:({params})=>fetch(`http://localhost:9000/articles/${params.id}`) 
       },
       {
+        path:'articleUpdate/:id',
+        element: <PrivateRoute><UpdateArticle></UpdateArticle></PrivateRoute>,
+         loader:({params})=>fetch(`http://localhost:9000/articles/${params.id}`) 
+      },
+      {
         path: 'login',
         element: <Login></Login>,
         
@@ -53,7 +59,7 @@ export const routes = createBrowserRouter([
         element:<Register></Register>
       },{
         path: 'myArticles',
-        element:<MyArticles></MyArticles>
+        element:<PrivateRoute><MyArticles></MyArticles></PrivateRoute>
       }, {
         path: 'premiumArticles',
         element:<PrivateRoute><PremiumArticles></PremiumArticles></PrivateRoute>

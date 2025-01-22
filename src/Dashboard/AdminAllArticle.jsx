@@ -24,34 +24,7 @@ const AdminAllArticles = () => {
       });
     }
   }
-//   //decline article
-  const onDecline = (id) => {
-    Swal.fire({
-  title: "Are you sure?",
-  text: "You won't be able to revert this!",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#3085d6",
-  cancelButtonColor: "#d33",
-  confirmButtonText: "Yes, decline it!"
-}).then(async(result) => {
-  if (result.isConfirmed) {
-    const { data } = await axiosSecure.patch(`/status/decline/${id}`);
-    if (data.modifiedCount > 0) {
-      refetch()
-     Swal.fire({
-      title: "Decline!",
-      text: "Your file has been Decline.",
-      icon: "success"
-    });
-    }
-    
-    
-  }
-});
-  
-    
-  }
+
 
 //   //delete article
   const onDelete = (id) => {
@@ -94,8 +67,84 @@ const AdminAllArticles = () => {
       });
     }
   }
+
+
+
+
+  //   //decline article
+  const onDecline = async (id) => {
+      // Textarea থেকে কারণ সংগ্রহ করা
+    const reason = document.getElementById("declineReason").value;
+     // কারণ ইনপুট না দিলে একটি সতর্ক বার্তা দেখানো
+  if (!reason) {
+    Swal.fire({
+      title: "Error!",
+      text: "Please provide a reason for declining.",
+      icon: "error",
+    });
+    return;
+  }
+
+
+// document.getElementById('my_modal_1').showModal()
+//  const { data } = await axiosSecure.put(`/status/decline/${id}`);
+//     if (data.modifiedCount > 0) {
+//       refetch()
+//      Swal.fire({
+//       title: "Decline!",
+//       text: "Your file has been Decline.",
+//       icon: "success"
+//     });
+//     }
+
+
+
+
+
+
+//     Swal.fire({
+//   title: "Are you sure?",
+//   text: "You won't be able to revert this!",
+//   icon: "warning",
+//   showCancelButton: true,
+//   confirmButtonColor: "#3085d6",
+//   cancelButtonColor: "#d33",
+//   confirmButtonText: "Yes, decline it!"
+// }).then(async(result) => {
+//   if (result.isConfirmed) {
+//     const { data } = await axiosSecure.put(`/status/decline/${id}`);
+//     if (data.modifiedCount > 0) {
+//       refetch()
+//      Swal.fire({
+//       title: "Decline!",
+//       text: "Your file has been Decline.",
+//       icon: "success"
+//     });
+//     }
+    
+    
+//   }
+// });
+  
+    
+  }
   return (
     <div>
+      {/* Open the modal using document.getElementById('ID').showModal() method */}
+{/* <button className="btn" onClick={()=>document.getElementById('my_modal_1').showModal()}>open modal</button> */}
+<dialog id="my_modal_1" className="modal">
+  <div className="modal-box">
+    <h3 className="font-bold text-lg">Hello!</h3>
+    <p className="py-4">Press ESC key or click the button below to close</p>
+    <div className="modal-action">
+      <form method="dialog" className="w-full">
+              {/* if there is a button in form, it will close the modal */}
+         <textarea id='declineReason' name="cause" className="textarea textarea-bordered w-full my-3" placeholder="write cause"></textarea>
+              <button className="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
       <SectionTitle heading={'All Articles'} subHeading={'Explore a Wide Range of Topics and Insights'}></SectionTitle>
 
       <div className="p-6 max-w-7xl mx-auto bg-white shadow-md rounded-md">
