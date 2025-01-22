@@ -18,11 +18,13 @@ import AdminAllArticles from "../Dashboard/AdminAllArticle";
 import ArticleDetails from "../pages/ArticleDetails/ArticleDetails";
 import PaymentPage from "../pages/PaymentPage";
 import UpdateArticle from "../pages/UpdateArticle/UpdateArticle";
+import ErrorPage from "../pages/Error/ErrorPage";
 
 export const routes = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout></MainLayout>,
+    errorElement:<ErrorPage></ErrorPage> ,
     children: [
       {
         path: '/',

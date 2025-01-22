@@ -36,7 +36,13 @@ const Home = () => {
       </form>
     </div>
   </div>
-</dialog>
+      </dialog>
+      
+
+
+
+
+      
     </div>
   );
 };
