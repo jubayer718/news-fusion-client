@@ -10,12 +10,16 @@ const Navbar = () => {
   // const isAdmin = true;
   const navOption = <>
   <li><NavLink to='/'>Home</NavLink></li>
-  <li><NavLink to='/addArticles'>Add Articles</NavLink></li>
   <li><NavLink to='/allArticle'>All Articles</NavLink></li>
-    <li><NavLink to='/subscription'>Subscription</NavLink></li>
-  <li><NavLink to='/myArticles'>My Articles</NavLink></li>
-  <li><NavLink to='/premiumArticles'>Premium Articles</NavLink></li>
-    {/* done: use condition for dashboard */}
+{user&&(  <li><NavLink to='/addArticles'>Add Articles</NavLink></li>
+)}
+{user&&(    <li><NavLink to='/subscription'>Subscription</NavLink></li>
+)}
+{user&&(    <li><NavLink to='/myArticles'>My Articles</NavLink></li>
+)}
+
+{user&&(    <li><NavLink to='/premiumArticles'>Premium Articles</NavLink></li>
+)}    {/* done: use condition for dashboard */}
   {isAdmin&&(<li><NavLink to='/dashboard/allArticles'>Dashboard</NavLink></li>)}
  
   </>
@@ -72,7 +76,7 @@ const Navbar = () => {
               tabIndex={0}
               className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52'
             >
-              <li><NavLink>profile</NavLink></li>
+              <li><NavLink to='myProfile'>profile</NavLink></li>
               <li className='mt-2'>
                 <button
                   onClick={handleLogOut}

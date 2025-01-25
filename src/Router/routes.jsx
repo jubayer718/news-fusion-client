@@ -19,23 +19,24 @@ import ArticleDetails from "../pages/ArticleDetails/ArticleDetails";
 import PaymentPage from "../pages/PaymentPage";
 import UpdateArticle from "../pages/UpdateArticle/UpdateArticle";
 import ErrorPage from "../pages/Error/ErrorPage";
+import MyProfile from "../pages/myProfile/MyProfile";
 
 export const routes = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout></MainLayout>,
-    errorElement:<ErrorPage></ErrorPage> ,
+    errorElement:<ErrorPage></ErrorPage>,
     children: [
       {
         path: '/',
         element: <Home></Home>
+      },{
+        path: 'allArticle',
+        element:<AllArticles></AllArticles>
       }, {
         path: 'addArticles',
         element:<PrivateRoute><AddArticles></AddArticles></PrivateRoute>
-      }, {
-        path: 'allArticle',
-        element:<AllArticles></AllArticles>
-      },
+      }, 
       {
         path: 'payment',
         element:<PrivateRoute><PaymentPage></PaymentPage></PrivateRoute>
@@ -51,6 +52,10 @@ export const routes = createBrowserRouter([
         path:'articleUpdate/:id',
         element: <PrivateRoute><UpdateArticle></UpdateArticle></PrivateRoute>,
          loader:({params})=>fetch(`http://localhost:9000/articles/${params.id}`) 
+      },
+      {
+        path: "myProfile",
+        element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>
       },
       {
         path: 'login',
