@@ -11,7 +11,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import Dashboard from "../Dashboard/Dashboard";
-import AllUsers from "../Dashboard/AllUsers";
+import AllUsers from "../Dashboard/alluser/AllUsers";
 import AddPublisher from "../Dashboard/AddPublisher";
 import AdminRoute from "./AdminRoute/AdminRoute";
 import AdminAllArticles from "../Dashboard/AdminAllArticle";
@@ -78,7 +78,8 @@ export const routes = createBrowserRouter([
     children: [
       {
         path: 'allUsers',
-        element:<AdminRoute><AllUsers></AllUsers></AdminRoute>
+        element: <AdminRoute><AllUsers></AllUsers></AdminRoute>,
+        loader:()=>fetch(`http://localhost:9000/usersCount`)
       },
       {
         path: 'allArticles',

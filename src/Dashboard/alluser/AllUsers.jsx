@@ -1,12 +1,20 @@
 import React from 'react';
-import useAxiosSecure from '../useAxiosSecure/UseAxiosSecure';
+import useAxiosSecure from '../../useAxiosSecure/UseAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { FaTrash, FaUsers } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import { useLoaderData } from 'react-router-dom';
+import './pagination.css'
 
 const AllUsers = () => {
 
   const axiosSecure = useAxiosSecure();
+  const { count } = useLoaderData();
+  const usersPerPage = 5;
+  const numberOfPages = Math.ceil(count / usersPerPage);
+  const pages = [...Array(numberOfPages).keys()]
+  console.log(pages);
+  console.log(count);
   const { refetch,data: users=[] } = useQuery({
     queryKey: ['user'],
     queryFn: async () => {
@@ -72,7 +80,7 @@ const AllUsers = () => {
           </tbody>
         </table>
       </div>
-
+            <div className='pagination'>pagination</div>
     </div>
     </div>
   );

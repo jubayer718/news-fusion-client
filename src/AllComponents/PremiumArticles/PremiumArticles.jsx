@@ -13,7 +13,7 @@ const PremiumArticles = () => {
       {
         premiumData.map((premiumArticle) => (
           
-          <PremiumCard premiumArticle={premiumArticle}></PremiumCard>
+          <PremiumCard key={premiumArticle._id} premiumArticle={premiumArticle}></PremiumCard>
         ))
       }
     </div>
