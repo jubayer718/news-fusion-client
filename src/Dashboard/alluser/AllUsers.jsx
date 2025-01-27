@@ -1,24 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useAxiosSecure from '../../useAxiosSecure/UseAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { FaTrash, FaUsers } from 'react-icons/fa';
 import Swal from 'sweetalert2';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useParams } from 'react-router-dom';
 import './pagination.css'
 
 const AllUsers = () => {
 
   const axiosSecure = useAxiosSecure();
   const { count } = useLoaderData();
-  const usersPerPage = 5;
+  const [currentPage, setCurrentPage] = useState(0);
+  const [usersPerPage, setUsersPerPage] = useState(5);
   const numberOfPages = Math.ceil(count / usersPerPage);
   const pages = [...Array(numberOfPages).keys()]
   console.log(pages);
   console.log(count);
   const { refetch,data: users=[] } = useQuery({
-    queryKey: ['user'],
+    queryKey: ['user',currentPage,usersPerPage],
     queryFn: async () => {
-      const res = await axiosSecure.get('/users' )
+      const res = await axiosSecure.get(`/users?page=${currentPage}&size=${usersPerPage}`)
       return res.data
     }
 
@@ -38,7 +39,25 @@ const AllUsers = () => {
 });
       }
     })
-}
+  }
+  
+
+  const handleUsersPerPage = e => {
+    console.log(e.target.value);
+    const val = parseInt(e.target.value);
+    setUsersPerPage(val);
+    setCurrentPage(0)
+  }
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage-1)
+    }
+  }
+  const handleNextPage = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage+1)
+    }
+  }
   return (
     <div>
     <div>
@@ -80,7 +99,19 @@ const AllUsers = () => {
           </tbody>
         </table>
       </div>
-            <div className='pagination'>pagination</div>
+        <div className='pagination '>
+          <p>current Page: {currentPage}</p>
+          <button className='btn mr-1' onClick={handlePrevPage}>Prev</button>
+          {pages.map(page => <button
+            onClick={()=>setCurrentPage(page)}
+             key={page} className={currentPage===page?'btn mr-1 selected':'btn mr-1'}>{page}
+          </button>)}
+          <button className='btn ml-1' onClick={handleNextPage}>Next</button>
+          <select value={usersPerPage}  className='btn' onChange={handleUsersPerPage}>
+            <option value="5">5</option>
+            <option value="10">10</option>
+          </select>
+            </div>
     </div>
     </div>
   );
