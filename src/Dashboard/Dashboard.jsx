@@ -7,6 +7,7 @@ const Dashboard = () => {
       <div>
         <ul className="menu bg-orange-400 min-h-screen  w-56">
   <li className="menu-title">Admin </li>
+  <li><NavLink to='/dashboard/adminHome'>Dashboard</NavLink></li>
   <li><NavLink to='/dashboard/allUsers'>All Users</NavLink></li>
   <li><NavLink to='/dashboard/allArticles'>All Articles</NavLink></li>
           <li><NavLink to='/dashboard/addPublishers'>Add Publisher</NavLink></li>
@@ -15,6 +16,7 @@ const Dashboard = () => {
 </ul>
       </div>
       <div className="flex-1 mt-5">
+
         <Outlet></Outlet>
       </div>
   </div>

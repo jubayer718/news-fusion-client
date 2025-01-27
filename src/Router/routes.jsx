@@ -20,6 +20,7 @@ import PaymentPage from "../pages/PaymentPage";
 import UpdateArticle from "../pages/UpdateArticle/UpdateArticle";
 import ErrorPage from "../pages/Error/ErrorPage";
 import MyProfile from "../pages/myProfile/MyProfile";
+import AdminHome from "../Dashboard/AdminHome";
 
 export const routes = createBrowserRouter([
   {
@@ -74,8 +75,13 @@ export const routes = createBrowserRouter([
     ]
   }, {
     path: '/dashboard',
-    element: <Dashboard></Dashboard>,
+    element:<AdminRoute> <Dashboard></Dashboard></AdminRoute>,
     children: [
+      {
+        path: 'adminHome',
+        element:<AdminRoute><AdminHome></AdminHome></AdminRoute>
+    }
+      ,
       {
         path: 'allUsers',
         element: <AdminRoute><AllUsers></AllUsers></AdminRoute>,

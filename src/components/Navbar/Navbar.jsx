@@ -20,7 +20,7 @@ const Navbar = () => {
 
 {user&&(    <li><NavLink to='/premiumArticles'>Premium Articles</NavLink></li>
 )}    {/* done: use condition for dashboard */}
-  {isAdmin&&(<li><NavLink to='/dashboard/allArticles'>Dashboard</NavLink></li>)}
+  {isAdmin&&(<li><NavLink to='/dashboard/adminHome'>Dashboard</NavLink></li>)}
  
   </>
   return (
