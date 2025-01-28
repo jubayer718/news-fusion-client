@@ -1,13 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
 import useAxiosSecure from '../useAxiosSecure/UseAxiosSecure';
 
-const useArticles = () => {
+const useArticles = (currentPage,usersPerPage) => {
   const axiosSecure = useAxiosSecure();
   const { data: articles = [],refetch } = useQuery({
-    queryKey: ['articles'],
+    queryKey: ['articles',currentPage,usersPerPage],
     queryFn: async () => {
-      const res = await axiosSecure.get('/articles')
+      const res = await axiosSecure.get(`/articles?page=${currentPage}&size=${usersPerPage}`)
       return res.data
     }
   })

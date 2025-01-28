@@ -33,7 +33,8 @@ export const routes = createBrowserRouter([
         element: <Home></Home>
       },{
         path: 'allArticle',
-        element:<AllArticles></AllArticles>
+        element: <AllArticles></AllArticles>,
+       
       }, {
         path: 'addArticles',
         element:<PrivateRoute><AddArticles></AddArticles></PrivateRoute>
@@ -89,7 +90,8 @@ export const routes = createBrowserRouter([
       },
       {
         path: 'allArticles',
-        element:<AdminRoute><AdminAllArticles></AdminAllArticles></AdminRoute>
+        element: <AdminRoute><AdminAllArticles></AdminAllArticles></AdminRoute>,
+         loader: () => fetch(`http://localhost:9000/articleCount`)
       }, {
         path: 'addPublishers',
         element:<AdminRoute><AddPublisher></AddPublisher></AdminRoute>

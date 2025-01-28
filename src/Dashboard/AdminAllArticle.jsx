@@ -2,13 +2,19 @@ import Swal from "sweetalert2";
 import useArticles from "../Hooks/useArticles";
 import SectionTitle from "../shared/sectionTitle/SectionTitle";
 import useAxiosSecure from "../useAxiosSecure/UseAxiosSecure";
+import { useLoaderData } from "react-router-dom";
+import { useState } from "react";
 
 
 
 const AdminAllArticles = () => {
   const axiosSecure = useAxiosSecure();
-  const [articles, refetch] = useArticles();
-
+  const {count}=useLoaderData()
+  const [currentPage, setCurrentPage] = useState(0);
+  const [usersPerPage, setUsersPerPage] = useState(5);
+  const [articles, refetch] = useArticles(currentPage,usersPerPage);
+  const numberOfPages = Math.ceil(count / usersPerPage);
+  const pages = [...Array(numberOfPages).keys()]
 
 //   // approve article
   const onApprove = async (id) => {
@@ -73,9 +79,9 @@ const AdminAllArticles = () => {
 
   //   //decline article
   const onDecline = async (id) => {
-      // Textarea থেকে কারণ সংগ্রহ করা
+   
     const reason = document.getElementById("declineReason").value;
-     // কারণ ইনপুট না দিলে একটি সতর্ক বার্তা দেখানো
+   
   if (!reason) {
     Swal.fire({
       title: "Error!",
@@ -128,6 +134,26 @@ const AdminAllArticles = () => {
   
     
   }
+
+
+
+  const handleUsersPerPage = e => {
+    // console.log(e.target.value);
+    const val = parseInt(e.target.value);
+    setUsersPerPage(val);
+    setCurrentPage(0)
+  }
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage-1)
+    }
+  }
+  const handleNextPage = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage+1)
+    }
+  }
+
   return (
     <div>
       {/* Open the modal using document.getElementById('ID').showModal() method */}
@@ -242,6 +268,19 @@ const AdminAllArticles = () => {
             ))}
           </tbody>
         </table>
+         <div className='pagination '>
+          <p>current Page: {currentPage}</p>
+          <button className='btn mr-1' onClick={handlePrevPage}>Prev</button>
+          {pages.map(page => <button
+            onClick={()=>setCurrentPage(page)}
+             key={page} className={currentPage===page?'btn mr-1 selected':'btn mr-1'}>{page}
+          </button>)}
+          <button className='btn ml-1' onClick={handleNextPage}>Next</button>
+          <select value={usersPerPage}  className='btn' onChange={handleUsersPerPage}>
+            <option value="5">5</option>
+            <option value="10">10</option>
+          </select>
+            </div>
       </div>
 
 

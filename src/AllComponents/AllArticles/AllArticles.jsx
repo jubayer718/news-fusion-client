@@ -5,6 +5,7 @@ import ArticlesCard from "./allArticlesCard/ArticlesCard";
 import usePublisher from "../../Hooks/usePublisher";
 import { Controller, useForm} from 'react-hook-form';
 import Select from 'react-select';
+import { useLoaderData } from "react-router-dom";
 
 const AllArticles = () => {
   const [filter, setFilter] = useState('');
@@ -12,7 +13,6 @@ const AllArticles = () => {
   const [tags, setTags] = useState([]);
   const [approvedArticles, refetch] = useApprovedArticles(filter,search,tags.map(tag=>tag.value));
   const [publisher]=usePublisher()
- 
 
   const handleReset = () => {
     setFilter('');
