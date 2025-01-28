@@ -22,4 +22,4 @@
 * sweet alert2 ETC
 
 ## Live URL
-* [Live site](https://brainbuddies-464)
+* [Live site](https://newfusion-f31a5.web.app)

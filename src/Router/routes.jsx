@@ -21,6 +21,7 @@ import UpdateArticle from "../pages/UpdateArticle/UpdateArticle";
 import ErrorPage from "../pages/Error/ErrorPage";
 import MyProfile from "../pages/myProfile/MyProfile";
 import AdminHome from "../Dashboard/AdminHome";
+import UpdateProfilePage from "../pages/UpdateProfilePage";
 
 export const routes = createBrowserRouter([
   {
@@ -59,6 +60,12 @@ export const routes = createBrowserRouter([
         path: "myProfile",
         element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>
       },
+      {
+        path: 'updateProfile/:email',
+        element: <PrivateRoute><UpdateProfilePage></UpdateProfilePage></PrivateRoute>,
+        loader:({params})=>fetch(`http://localhost:9000/users/update/${params.email}`)
+      }
+      ,
       {
         path: 'login',
         element: <Login></Login>,

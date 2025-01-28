@@ -1,31 +1,27 @@
+import { Link } from "react-router-dom";
+import UseAuth from "../../Hooks/UseAuth";
 
 
 const MyProfile = () => {
-     const { loading } = useContext(AuthContext)
-  if (loading) {
-   return  
-  }
-  const { user } = useContext(AuthContext)
-  console.log(user)
-
-  const {photoURL,email,displayName
-}=user
-
- return (
-      <div className="card card-compact bg-base-100 lg:w-3/5 mx-auto   shadow-xl">
-  <figure className='p-5'>
-    <img className='w-full h-72 rounded-lg'
-      src={photoURL}
-      alt="profile Photo" />
+  const { user } = UseAuth();
+  // console.log(user);
+  return (
+    <div className="flex items-center justify-center my-12">
+      <div className="card card-compact bg-base-100 w-96 lg:w-[500px] shadow-xl">
+  <figure>
+    <img
+      src={user?.photoURL}
+      alt="profile photo" />
   </figure>
   <div className="card-body">
-        <h2 className="text-2xl font-bold"> Name: { displayName}</h2>
-        <p className='font-bold'>Email: { email}</p>
-    <div className="card-actions ">
-      <Link to="/update" className="btn btn-primary w-full">Update</Link>
+        <h2 className="card-title">Name: { user?.displayName}</h2>
+        <p className="text-lg">Email: { user?.email}</p>
+    <div className="card-actions justify-end">
+   <Link className="w-full" to={`/updateProfile/${user?.email}`}>   <button className="w-full btn bg-orange-400">Update</button></Link>
     </div>
   </div>
 </div>
+  </div>
   );
 };
 

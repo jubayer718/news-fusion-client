@@ -16,6 +16,11 @@ const AdminAllArticles = () => {
   const numberOfPages = Math.ceil(count / usersPerPage);
   const pages = [...Array(numberOfPages).keys()]
 
+
+// const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility control
+//   const [reason, setReason] = useState(""); // Decline reason state
+  
+
 //   // approve article
   const onApprove = async (id) => {
     const res = await axiosSecure.patch(`/status/approve/${id}`);
@@ -80,57 +85,36 @@ const AdminAllArticles = () => {
   //   //decline article
   const onDecline = async (id) => {
    
-    const reason = document.getElementById("declineReason").value;
-   
-  if (!reason) {
+
+
+
+
+
+
     Swal.fire({
-      title: "Error!",
-      text: "Please provide a reason for declining.",
-      icon: "error",
-    });
-    return;
+  title: "Are you sure?",
+  text: "You won't be able to revert this!",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes, decline it!"
+}).then(async(result) => {
+  if (result.isConfirmed) {
+    const { data } = await axiosSecure.put(`/status/decline/${id}`);
+    if (data.modifiedCount > 0) {
+      refetch()
+     Swal.fire({
+      title: "Decline!",
+      text: "Your file has been Decline.",
+      icon: "success"
+     });
+       
+    }
+    
+    
   }
-
-
-// document.getElementById('my_modal_1').showModal()
-//  const { data } = await axiosSecure.put(`/status/decline/${id}`);
-//     if (data.modifiedCount > 0) {
-//       refetch()
-//      Swal.fire({
-//       title: "Decline!",
-//       text: "Your file has been Decline.",
-//       icon: "success"
-//     });
-//     }
-
-
-
-
-
-
-//     Swal.fire({
-//   title: "Are you sure?",
-//   text: "You won't be able to revert this!",
-//   icon: "warning",
-//   showCancelButton: true,
-//   confirmButtonColor: "#3085d6",
-//   cancelButtonColor: "#d33",
-//   confirmButtonText: "Yes, decline it!"
-// }).then(async(result) => {
-//   if (result.isConfirmed) {
-//     const { data } = await axiosSecure.put(`/status/decline/${id}`);
-//     if (data.modifiedCount > 0) {
-//       refetch()
-//      Swal.fire({
-//       title: "Decline!",
-//       text: "Your file has been Decline.",
-//       icon: "success"
-//     });
-//     }
-    
-    
-//   }
-// });
+});
   
     
   }
@@ -157,20 +141,37 @@ const AdminAllArticles = () => {
   return (
     <div>
       {/* Open the modal using document.getElementById('ID').showModal() method */}
-{/* <button className="btn" onClick={()=>document.getElementById('my_modal_1').showModal()}>open modal</button> */}
-<dialog id="my_modal_1" className="modal">
+      {/* <button className="btn" onClick={()=>document.getElementById('my_modal_1').showModal()}>open modal</button> */}
+      
+
+     {/* {isModalOpen&&(`${document.getElementById('my_modal_1').showModal()}`)}
+       <dialog id="my_modal_1" className="modal">
   <div className="modal-box">
     <h3 className="font-bold text-lg">Hello!</h3>
     <p className="py-4">Press ESC key or click the button below to close</p>
     <div className="modal-action">
       <form method="dialog" className="w-full">
-              {/* if there is a button in form, it will close the modal */}
-         <textarea id='declineReason' name="cause" className="textarea textarea-bordered w-full my-3" placeholder="write cause"></textarea>
-              <button className="btn">Close</button>
+               if there is a button in form, it will close the modal 
+              <textarea
+                 id="declineReason"
+              name="cause"
+              className="textarea textarea-bordered w-full my-3"
+              placeholder="Write your reason here"
+              value={reason}
+              onChange={(e) => setReason(e.target.value)} 
+              ></textarea>
+               <button
+                onClick={()=>onDecline()} 
+                className="btn btn-error"
+              >
+                Confirm Decline
+              </button>
+              <button   className="btn">Close</button>
       </form>
     </div>
   </div>
-</dialog>
+</dialog> */}
+
       <SectionTitle heading={'All Articles'} subHeading={'Explore a Wide Range of Topics and Insights'}></SectionTitle>
 
       <div className="p-6 max-w-7xl mx-auto bg-white shadow-md rounded-md">
@@ -242,6 +243,8 @@ const AdminAllArticles = () => {
                   {/* decline article */}
                   <button
                     className="btn btn-sm btn-error w-full"
+
+                    // onClick={()=>document.getElementById('my_modal_1').showModal()}
                     onClick={() => onDecline(article._id)}
                     disabled={article.status === "declined"}
                   >
