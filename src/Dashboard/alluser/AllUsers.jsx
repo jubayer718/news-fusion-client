@@ -14,8 +14,8 @@ const AllUsers = () => {
   const [usersPerPage, setUsersPerPage] = useState(5);
   const numberOfPages = Math.ceil(count / usersPerPage);
   const pages = [...Array(numberOfPages).keys()]
-  console.log(pages);
-  console.log(count);
+  // console.log(pages);
+  // console.log(count);
   const { refetch,data: users=[] } = useQuery({
     queryKey: ['user',currentPage,usersPerPage],
     queryFn: async () => {
@@ -43,7 +43,7 @@ const AllUsers = () => {
   
 
   const handleUsersPerPage = e => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     const val = parseInt(e.target.value);
     setUsersPerPage(val);
     setCurrentPage(0)

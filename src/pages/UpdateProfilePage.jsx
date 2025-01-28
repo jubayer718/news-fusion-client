@@ -1,14 +1,15 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import UseAuth from "../Hooks/UseAuth";
 import useAxiosSecure from "../useAxiosSecure/UseAxiosSecure";
 import Swal from "sweetalert2";
 
 
 const UpdateProfilePage = () => {
-  const loadProfileData = useLoaderData();
+  // const loadProfileData = useLoaderData();
   // console.log(loadProfileData);
-  const { user } = UseAuth();
-  const axiosSecure=useAxiosSecure()
+  const { user,updateUserProfile } = UseAuth();
+  // const axiosSecure=useAxiosSecure()
+  const navigate=useNavigate()
 
 
 
@@ -18,17 +19,26 @@ const UpdateProfilePage = () => {
     const form = event.target;
     const name = form.name.value;
     const email = form.email.value;
-    const picPro = form.picPro.value;
+    const photo = form.photo.value;
+    updateUserProfile({ email: email, photoURL: photo,displayName:name })
+     .then((result) => {
+          Swal.fire('Profile Updated')
+            navigate('/')
+          }).catch(error => {
+          // console.log(error)
+          })
+    
 
-    const profileInfo = {
-      name,
-      email,
-      picPro
-    }
-    const { data } = await axiosSecure.patch(`/users/update/${user?.email}`, profileInfo) 
-    if (data.modifiedCount > 0) {
-     Swal.fire('profile Update successful')
-   }
+    
+    // const profileInfo = {
+    //   name,
+    //   email,
+    //   picPro
+    // }
+  //   const { data } = await axiosSecure.patch(`/users/update/${user?.email}`, profileInfo) 
+  //   if (data.modifiedCount > 0) {
+  //    Swal.fire('profile Update successful')
+  //  }
   }
   return (
     <div className=" flex items-center justify-center my-12">
@@ -36,7 +46,7 @@ const UpdateProfilePage = () => {
       <form onSubmit={handleSubmit} className="card-body">
         <div className="form-control">
          
-        <img  src={loadProfileData?.picPro} alt="" />
+        <img  src={user?.photoURL} alt="" />
         </div>
 
                
@@ -45,14 +55,14 @@ const UpdateProfilePage = () => {
           <label className="label">
             <span className="label-text">Name</span>
           </label>
-          <input type="text" name="name" defaultValue={loadProfileData?.name} placeholder="name" className="input input-bordered" required />
+          <input type="text" name="name"  placeholder="name" className="input input-bordered" required />
         </div>
      
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
           </label>
-          <input type="email" name="email" defaultValue={loadProfileData?.email} placeholder="email" className="input input-bordered" required />
+          <input type="email" name="email" placeholder="email" className="input input-bordered" required />
         </div>
 
 
@@ -60,7 +70,7 @@ const UpdateProfilePage = () => {
           <label className="label">
             <span className="label-text">PhotoURL</span>
           </label>
-          <input type="url" name="picPro" defaultValue={loadProfileData?.picPro} placeholder="email" className="input input-bordered" required />
+          <input type="url" name="photo"  placeholder="email" className="input input-bordered" required />
         </div>
      
         <div className="form-control mt-6">

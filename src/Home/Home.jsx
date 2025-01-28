@@ -30,7 +30,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    fetch('http://localhost:9000/homeArticles')
+    fetch('https://newsfusion-server.vercel.app/homeArticles')
       .then(res => res.json())
       .then(data => {
           // Sort articles by viewCount and take top 6

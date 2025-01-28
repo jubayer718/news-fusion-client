@@ -18,7 +18,7 @@ const Social = () => {
       }
       axiosPublic.post('/users', userInfo)
         .then(result => {
-          console.log(result.data);
+          // console.log(result.data);
         navigate('/')
       })
     })

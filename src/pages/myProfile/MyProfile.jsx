@@ -17,7 +17,7 @@ const MyProfile = () => {
         <h2 className="card-title">Name: { user?.displayName}</h2>
         <p className="text-lg">Email: { user?.email}</p>
     <div className="card-actions justify-end">
-   <Link className="w-full" to={`/updateProfile/${user?.email}`}>   <button className="w-full btn bg-orange-400">Update</button></Link>
+   <Link className="w-full" to={`/updateProfile`}>   <button className="w-full btn bg-orange-400">Update</button></Link>
     </div>
   </div>
 </div>

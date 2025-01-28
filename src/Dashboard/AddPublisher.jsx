@@ -18,7 +18,7 @@ const AddPublisher = () => {
   } = useForm()
 
   const onSubmit = async (data) => {
-    console.log(data);
+    // console.log(data);
     const image_file = { image: data.image[0] }
     const res = await axiosPublic.post(image_hosting_api, image_file, {
       headers: {

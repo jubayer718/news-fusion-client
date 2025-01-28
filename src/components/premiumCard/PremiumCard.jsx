@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const PremiumCard = ({ premiumArticle }) => {
-  console.log(premiumArticle);
+  // console.log(premiumArticle);
 
   const { _id, description, image, publisher, title,isPremium } = premiumArticle
   return (

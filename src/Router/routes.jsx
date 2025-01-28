@@ -49,21 +49,21 @@ export const routes = createBrowserRouter([
       }, {
         path: 'articleDetails/:id',
         element: <PrivateRoute><ArticleDetails></ArticleDetails></PrivateRoute>,
-        loader:({params})=>fetch(`http://localhost:9000/articles/${params.id}`) 
+        loader:({params})=>fetch(`https://newsfusion-server.vercel.app/articles/${params.id}`) 
       },
       {
         path:'articleUpdate/:id',
         element: <PrivateRoute><UpdateArticle></UpdateArticle></PrivateRoute>,
-         loader:({params})=>fetch(`http://localhost:9000/articles/${params.id}`) 
+         loader:({params})=>fetch(`https://newsfusion-server.vercel.app/articles/${params.id}`) 
       },
       {
         path: "myProfile",
         element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>
       },
       {
-        path: 'updateProfile/:email',
+        path: 'updateProfile',
         element: <PrivateRoute><UpdateProfilePage></UpdateProfilePage></PrivateRoute>,
-        loader:({params})=>fetch(`http://localhost:9000/users/update/${params.email}`)
+        // loader:({params})=>fetch(`https://newsfusion-server.vercel.app/users/update/${params.email}`)
       }
       ,
       {
@@ -93,12 +93,12 @@ export const routes = createBrowserRouter([
       {
         path: 'allUsers',
         element: <AdminRoute><AllUsers></AllUsers></AdminRoute>,
-        loader:()=>fetch(`http://localhost:9000/usersCount`)
+        loader:()=>fetch(`https://newsfusion-server.vercel.app/usersCount`)
       },
       {
         path: 'allArticles',
         element: <AdminRoute><AdminAllArticles></AdminAllArticles></AdminRoute>,
-         loader: () => fetch(`http://localhost:9000/articleCount`)
+         loader: () => fetch(`https://newsfusion-server.vercel.app/articleCount`)
       }, {
         path: 'addPublishers',
         element:<AdminRoute><AddPublisher></AddPublisher></AdminRoute>

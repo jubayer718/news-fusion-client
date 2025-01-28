@@ -23,11 +23,11 @@ const Register = () => {
       picPro: data.photo,
       premiumTaken: null,
     }
-    console.log(data),
+    // console.log(data),
 
       createUser(data?.email, data?.password)
         .then(res => {
-          console.log(res);
+          // console.log(res);
           updateUserProfile(data?.name, data?.photo)
             .then(async () => {
 

@@ -5,7 +5,7 @@ import SectionTitle from '../../shared/sectionTitle/SectionTitle';
 
 const PremiumArticles = () => {
   const [premiumData] = usePremiumArticle();
-  console.log(premiumData);
+  // console.log(premiumData);
   return (
     <div>
       <SectionTitle heading={'Elevate Your Knowledge'} subHeading={'Access Premium Content Curated for Excellence'}></SectionTitle>

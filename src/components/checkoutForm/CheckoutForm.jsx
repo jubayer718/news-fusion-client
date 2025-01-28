@@ -41,10 +41,10 @@ const CheckoutForm = ({subscriptionPeriod, price }) => {
 
 
     if (error) {
-      console.log('[error]', error);
+      // console.log('[error]', error);
       setError(error.message)
     } else {
-      console.log('[paymentMethod]', paymentMethod);
+      // console.log('[paymentMethod]', paymentMethod);
       setError('')
     }
 
