@@ -1,8 +1,25 @@
-# React + Vite
+## Project Name : 
+* News Fusion
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+## Which purpose this web site?
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* First of all it use for news related Work and Activities.
+* Here any person submit his/her News Article.
+
+
+## Key feature
+* This website attractive and more responsive.
+* user safe browsing.
+* current user doesn't access other's private data.
+* Admin route implement here .
+* current user doesn't delete other created article.
+* also current user doesn't update other created article.
+* when a user create an article ,initial stage it pending for admin review and when admin approve the article then user created article status approve and it showing users all article page.
+
+## Which npm package I have used:
+* react react select
+* sweet alert2 ETC
+
+## Live URL
+* [Live site](https://brainbuddies-464)
