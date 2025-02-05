@@ -1,5 +1,7 @@
 # 📰 News Fusion
 
+![Image](https://github.com/user-attachments/assets/b1f14b42-75cc-4514-a530-e5b8ae805450)
+
 ## 🚀 Introduction
 **News Fusion** is a modern, feature-rich news platform where users can explore the latest articles, trending news, and premium content. The platform supports multiple publishers and provides an engaging user experience with interactive elements.
 
