@@ -14,7 +14,25 @@ const Home = () => {
   const [articles, setArticles] = useState([]);
     const [trendingArticles, setTrendingArticles] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  
+   const [pollResult, setPollResult] = useState({
+    Business: 35,
+    Entertainment: 25,
+    Technology: 20,
+    Health: 10,
+    Sports: 10,
+  });
+    // Handle poll voting
+  const handleVote = (category) => {
+    Swal.fire({
+      title: `You voted for ${category}!`,
+      icon: "success",
+      confirmButtonText: "OK",
+    });
+    setPollResult((prev) => ({
+      ...prev,
+      [category]: prev[category] + 1,
+    }));
+  };
    useEffect(() => {
     // Set timeout to show the modal after 10 seconds
     const timer = setTimeout(() => {
@@ -30,7 +48,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    fetch('https://newsfusion-server.vercel.app/homeArticles')
+    fetch('http://localhost:9000/homeArticles')
       .then(res => res.json())
       .then(data => {
           // Sort articles by viewCount and take top 6
@@ -70,7 +88,7 @@ const Home = () => {
 // ];
 
   return (
-    <div>
+    <div className="">
     {/* Open the modal using document.getElementById('ID').showModal() method */}
 {/* <button className="btn" onClick={()=>document.getElementById('my_modal_1').showModal()}>open modal</button> */}
 <dialog id="my_modal_1" className="modal">
@@ -93,22 +111,23 @@ const Home = () => {
 
 
 
-       <div className="container mx-auto p-6 space-y-16">
+       <div className="container mx-auto  space-y-16">
       {/* Trending Articles Section */}
-      <section>
-        <div className="container mx-auto p-6">
+      <section className="py-20">
+        <div className="container mx-auto">
             <h2 className="text-3xl font-bold text-center mb-6">Trending Articles</h2>
             
-     <AwesomeSlider animation="cubeAnimation">
+            <div className="">
+              <AwesomeSlider animation="cubeAnimation">
     {trendingArticles.map((article) => (
           
-                <div key={article._id} className="p-4">
+                <div key={article._id} className="w-full">
                
-            <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+            <div className="bg-white  shadow-lg rounded-lg">
               <img
                 src={article.image}
                 alt={article.title}
-                className="h-96 w-full object-cover"
+                className="lg:h-[520px] h-44 w-full object-cover"
               />
               <div className="p-4">
                 <h3 className="text-lg font-bold">{article.title}</h3>
@@ -131,6 +150,7 @@ const Home = () => {
         ))}
   </AwesomeSlider>
 
+     </div>
 
 
       {/* <Slider {...sliderSettings}>
@@ -234,6 +254,46 @@ const Home = () => {
               <li>✔ Dedicated Support</li>
             </ul>
             <Link to='/subscription'><button className="btn mt-6 bg-yellow-500 text-white px-4 py-2 rounded"> get premium</button></Link>
+          </div>
+        </div>
+        </section>
+        {/* 6. New Unique Section 1: Featured Authors */}
+      <section className="py-10">
+        <h2 className="text-3xl font-bold text-center mb-6">Featured Authors</h2>
+        <div className="grid grid-cols-2 gap-6">
+          <div className="p-6 bg-white rounded-lg shadow">
+            <img src="https://i.ibb.co/BZZ5WKv/unsplash-Eh-Tc-C9s-YXsw-4.png" alt="Author" className="rounded-full w-16 h-16 mb-4 mx-auto" />
+            <h3 className="font-bold text-xl text-center">MD. Jubaer Ahmed Naem</h3>
+            <p className="text-center">Articles: 45 | Popular Article: "10 Tips for Business Growth"</p>
+            <button className="btn btn-sm btn-primary mt-4 block mx-auto">Follow</button>
+          </div>
+          {/* Add more authors dynamically */}
+        </div>
+      </section>
+
+      {/* 7. New Unique Section 2: Weekly Poll or Quiz */}
+      <section className="py-10 bg-gray-100">
+        <h2 className="text-3xl font-bold text-center mb-6">Weekly Poll</h2>
+        <div className="text-center">
+          <h3 className="font-bold text-xl">Which topic interests you most this week?</h3>
+          <div className="flex justify-center gap-4 mt-4">
+            {Object.keys(pollResult).map((category) => (
+              <button
+                key={category}
+                className="btn btn-sm btn-primary"
+                onClick={() => handleVote(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+          <div className="mt-6">
+            <h4 className="font-bold">Poll Results:</h4>
+            {Object.entries(pollResult).map(([category, votes]) => (
+              <p key={category}>
+                {category}: {votes} votes
+              </p>
+            ))}
           </div>
         </div>
       </section>

@@ -13,7 +13,8 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 const UpdateArticle = () => {
   const loaderData = useLoaderData();
-  const { title,description,image,tags,publisher,_id} = loaderData;
+  const { title, description, image, tags, publisher, _id } = loaderData;
+  // console.log(loaderData);
    const axiosPublic = useAxiosPublic();
    const axiosSecure = useAxiosSecure();
   const { user } = UseAuth();

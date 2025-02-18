@@ -17,8 +17,8 @@ const AdminAllArticles = () => {
   const pages = [...Array(numberOfPages).keys()]
 
 
-// const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility control
-//   const [reason, setReason] = useState(""); // Decline reason state
+const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility control
+  const [reason, setReason] = useState(""); // Decline reason state
   
 
 //   // approve article
@@ -244,12 +244,44 @@ const AdminAllArticles = () => {
                   <button
                     className="btn btn-sm btn-error w-full"
 
-                    // onClick={()=>document.getElementById('my_modal_1').showModal()}
-                    onClick={() => onDecline(article._id)}
+                    onClick={()=>document.getElementById('my_modal_1').showModal()}
+                    // onClick={() => onDecline(article._id)}
                     disabled={article.status === "declined"}
                   >
                     Decline
                   </button>
+                       {isModalOpen&&(`${document.getElementById('my_modal_1').showModal()}`)}
+       <dialog id="my_modal_1" className="modal">
+  <div className="modal-box">
+    <h3 className="font-bold text-lg">Hello!</h3>
+    <p className="py-4">Press ESC key or click the button below to close</p>
+    <div className="modal-action">
+      <form method="dialog" className="w-full">
+               if there is a button in form, it will close the modal 
+              <textarea
+                 id="declineReason"
+              name="cause"
+              className="textarea textarea-bordered w-full my-3"
+              placeholder="Write your reason here"
+              value={reason}
+              onChange={(e) => setReason(e.target.value)} 
+              ></textarea>
+               <button
+                onClick={()=>onDecline(article._id)} 
+                className="btn btn-error"
+              >
+                Confirm Decline
+              </button>
+              <button   className="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+
+
+
+
                   {/* delete article */}
                   <button
                     className="btn btn-sm btn-outline w-full"

@@ -15,7 +15,7 @@ const PremiumArticles = () => {
           
           <PremiumCard key={premiumArticle._id} premiumArticle={premiumArticle}></PremiumCard>
         ))
-      }
+      } 
     </div>
     </div>
   );

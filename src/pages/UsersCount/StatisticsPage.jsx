@@ -8,7 +8,7 @@ const StatisticsPage = () => {
 
   // Fetch users data
   useEffect(() => {
-    fetch("https://newsfusion-server.vercel.app/statistics") // Replace with your backend API endpoint
+    fetch("http://localhost:9000/statistics") // Replace with your backend API endpoint
       .then((res) => res.json())
       .then((data) => {
         const allUsers = data.length;
