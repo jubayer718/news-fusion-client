@@ -16,9 +16,11 @@ const RecentNews = () => {
           hotNews.map(news =>
             <NewsCard
               key={news._id}
+              id={news?._id}
        title={news?.title}
         image={ news?.image}
-  description={news?.description}
+              description={news?.description}
+              
 
       ></NewsCard>)
         }

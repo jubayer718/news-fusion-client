@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const NewsCard = ({ title, image, description }) => {
+const NewsCard = ({ id, title, image, description }) => {
+  
   return (
     <div className="max-w-sm rounded-lg overflow-hidden shadow-lg ">
       {/* News Image */}
@@ -14,9 +16,10 @@ const NewsCard = ({ title, image, description }) => {
         </p>
 
         {/* See More Button */}
-        <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 w-full">
+        <Link to={`/recent/details/${id}`}>
+         <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 w-full">
           See More
-        </button>
+        </button></Link>
       </div>
     </div>
   );

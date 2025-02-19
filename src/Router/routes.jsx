@@ -23,6 +23,7 @@ import MyProfile from "../pages/myProfile/MyProfile";
 import AdminHome from "../Dashboard/AdminHome";
 import UpdateProfilePage from "../pages/UpdateProfilePage";
 import OverviewPage from "../pages/Overview/OverviewPage";
+import RecentDetails from "../AllComponents/RecentNewsDetails/RecentDetails";
 
 export const routes = createBrowserRouter([
   {
@@ -80,6 +81,11 @@ export const routes = createBrowserRouter([
       }, {
         path: 'premiumArticles',
         element:<PrivateRoute><PremiumArticles></PremiumArticles></PrivateRoute>
+      }
+      , {
+        path: "/recent/details/:id",
+        element: <PrivateRoute><RecentDetails></RecentDetails></PrivateRoute>,
+        loader:({params})=>fetch(`http://localhost:9000/recent/details/${params.id}`)
       }
     ]
   }, {
