@@ -60,7 +60,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+            className="menu menu-sm dropdown-content text-gray-800 bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
             {
               navOption
             }
@@ -69,7 +69,7 @@ const Navbar = () => {
         <a className="btn btn-ghost text-xl font-bold text-gray-800"><span className='text-orange-600'>News</span>Fusion</a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal  gap-4 px-1 textb">
+        <ul className="menu menu-horizontal  gap-4 px-1 text-black">
           {navOption}
            <button onClick={toggleTheme}>
             {theme === "light" ? <FaCloudMoon /> : <IoIosSunny />}

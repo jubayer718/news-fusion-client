@@ -42,7 +42,7 @@ const MyArticles = () => {
 });
   }
   return (
-   <div className="overflow-x-auto">
+   <div className="overflow-x-auto h-screen">
   <table className="table">
     {/* head */}
     <thead>

@@ -159,7 +159,8 @@ const Home = () => {
 
             {/* Recent News */}
         <section>
-           <div className=" mt-12">
+            <h1 className="text-4xl text-center">Recent News</h1>
+          <div className=" mt-12">
               <RecentNews></RecentNews>
             </div>
         </section>

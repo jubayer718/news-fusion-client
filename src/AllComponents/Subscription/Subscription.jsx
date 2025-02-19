@@ -27,7 +27,7 @@ const Subscription = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6">
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6 mt-16">
       {/* Attractive Banner */}
       <div className="w-full max-w-4xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-lg p-8 text-center shadow-lg">
         <h1 className="text-4xl font-bold mb-4">Become a Premium Member!</h1>
