@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import UseAuth from '../../Hooks/UseAuth';
 import useAdmin from '../../Hooks/useAdmin';
 import './nav.css'
+import { FaCloudMoon } from 'react-icons/fa';
+import { IoIosSunny } from 'react-icons/io';
 
 const Navbar = () => {
   const { user, handleLogOut } = UseAuth();
   const [isAdmin, isAdminLoading] = useAdmin();
-
+ // State to track the current theme
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+    // Apply the theme to the <html> element
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme); // Save the theme to local storage
+  }, [theme]);
+    // Toggle theme
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
   // const isAdmin = true;
   const navOption = <>
     <li><NavLink to='/'>Home</NavLink></li>
@@ -29,7 +41,7 @@ const Navbar = () => {
 
   </>
   return (
-    <div className="lg:px-12 md:px-12 fixed z-50 bg-orange-200 navbar ">
+    <div className="lg:px-12 md:px-12 fixed z-50 top-0 bg-orange-200 navbar ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -59,6 +71,9 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal  gap-4 px-1">
           {navOption}
+           <button onClick={toggleTheme}>
+            {theme === "light" ? <FaCloudMoon /> : <IoIosSunny />}
+          </button>
         </ul>
       </div>
       <div className="navbar-end">

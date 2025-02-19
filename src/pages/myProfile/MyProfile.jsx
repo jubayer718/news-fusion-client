@@ -6,7 +6,7 @@ const MyProfile = () => {
   const { user } = UseAuth();
   // console.log(user);
   return (
-    <div className="flex items-center justify-center my-12">
+    <div className="flex items-center justify-center my-24">
       <div className="card card-compact bg-base-100 w-96 lg:w-[500px] shadow-xl">
   <figure>
     <img

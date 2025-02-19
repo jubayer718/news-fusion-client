@@ -33,7 +33,7 @@ const AllArticles = () => {
     { value: "Entertainment", label: "Entertainment" },
   ];
   return (
-    <div>
+    <div className="my-20">
          <div className='flex flex-col md:flex-row justify-center items-center gap-5 my-12 '>
           <div>
           <select
