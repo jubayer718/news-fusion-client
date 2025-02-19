@@ -8,6 +8,7 @@ import 'react-awesome-slider/dist/styles.css';
 import 'react-awesome-slider/dist/custom-animations/cube-animation.css';
 import StatisticsPage from "../pages/UsersCount/StatisticsPage";
 import RecentNews from "../AllComponents/RecentNews/RecentNews";
+import GlobalNews from "../AllComponents/GlobalNews/GlobalNews";
 
 
 const Home = () => {
@@ -159,12 +160,17 @@ const Home = () => {
 
             {/* Recent News */}
         <section>
-            <h1 className="text-4xl text-center">Recent News</h1>
+            <h1 className="text-4xl font-bold text-center">Recent News</h1>
           <div className=" mt-12">
               <RecentNews></RecentNews>
             </div>
         </section>
-        
+        {/*Global News Section  */}
+        <section>
+
+          <GlobalNews></GlobalNews>
+        </section>
+     
            {/* users count use react countup */}
         <section>
         <StatisticsPage></StatisticsPage>
