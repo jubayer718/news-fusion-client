@@ -7,6 +7,7 @@ import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
 import 'react-awesome-slider/dist/custom-animations/cube-animation.css';
 import StatisticsPage from "../pages/UsersCount/StatisticsPage";
+import RecentNews from "../AllComponents/RecentNews/RecentNews";
 
 
 const Home = () => {
@@ -48,7 +49,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    fetch('https://newsfusion-server.vercel.app/homeArticles')
+    fetch('http://localhost:9000/homeArticles')
       .then(res => res.json())
       .then(data => {
           // Sort articles by viewCount and take top 6
@@ -152,42 +153,22 @@ const Home = () => {
 
      </div>
 
-
-      {/* <Slider {...sliderSettings}>
-              {articles.map((article) => (
-          
-                <div key={article._id} className="p-4">
-               
-            <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-              <img
-                src={article.image}
-                alt={article.title}
-                className="h-48 w-full object-cover"
-              />
-              <div className="p-4">
-                <h3 className="text-lg font-bold">{article.title}</h3>
-                <p className="text-sm text-gray-600">{article.publisher}</p>
-                <p className="text-sm text-gray-500 mt-2">{article.description}</p>
-              </div>
-              <div className="p-4 flex items-center">
-                <img
-                  src={article.author.photo}
-                  alt={article.author.name}
-                  className="h-10 w-10 rounded-full mr-4"
-                />
-                <div>
-                  <p className="text-sm font-bold">{article.author.name}</p>
-                  <p className="text-sm text-gray-500">{article.postedDate.slice(0, 10)}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </Slider> */}
     </div>
+    
         </section>
-        {/* users count use react countup */}
+
+            {/* Recent News */}
+        <section>
+           <div className=" mt-12">
+              <RecentNews></RecentNews>
+            </div>
+        </section>
+        
+           {/* users count use react countup */}
+        <section>
         <StatisticsPage></StatisticsPage>
+        </section>
+        
         <section>
           
   </section>
@@ -203,7 +184,9 @@ const Home = () => {
             </div>
           ))}
         </div>
-      </section>
+        </section>
+        
+       
 
       {/* Statistics Section */}
       <section>

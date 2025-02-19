@@ -69,7 +69,7 @@ const Navbar = () => {
         <a className="btn btn-ghost text-xl font-bold text-gray-800"><span className='text-orange-600'>News</span>Fusion</a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal  gap-4 px-1">
+        <ul className="menu menu-horizontal  gap-4 px-1 text-black">
           {navOption}
            <button onClick={toggleTheme}>
             {theme === "light" ? <FaCloudMoon /> : <IoIosSunny />}
