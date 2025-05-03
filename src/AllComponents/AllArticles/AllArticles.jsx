@@ -6,13 +6,15 @@ import usePublisher from "../../Hooks/usePublisher";
 import { Controller, useForm} from 'react-hook-form';
 import Select from 'react-select';
 import { useLoaderData } from "react-router-dom";
+import { useTheme } from "../../Provider/ThemeProvider/ThemeProvider";
 
 const AllArticles = () => {
   const [filter, setFilter] = useState('');
   const [search, setSearch] = useState('');
   const [tags, setTags] = useState([]);
   const [approvedArticles, refetch] = useApprovedArticles(filter,search,tags.map(tag=>tag.value));
-  const [publisher]=usePublisher()
+  const [publisher] = usePublisher()
+  const {theme}=useTheme()
 
   const handleReset = () => {
     setFilter('');

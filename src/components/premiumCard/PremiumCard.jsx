@@ -26,6 +26,7 @@ const PremiumCard = ({ premiumArticle }) => {
 
       <figure className='p-2'>
         <img
+          className='h-44 w-full'
           src={image}
           alt='premium img' />
       </figure>
