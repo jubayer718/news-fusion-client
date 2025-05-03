@@ -12,8 +12,8 @@ const AllUsers = () => {
   const { count } = useLoaderData();
   const [currentPage, setCurrentPage] = useState(0);
   const [usersPerPage, setUsersPerPage] = useState(5);
-  const numberOfPages = Math.ceil(count / usersPerPage);
-  const pages = [...Array(numberOfPages).keys()]
+  const numberOfPages = count && usersPerPage ? Math.ceil(count / usersPerPage) : 0;
+  const pages = numberOfPages > 0 ? [...Array(numberOfPages).keys()] : [];
   // console.log(pages);
   // console.log(count);
   const { refetch,data: users=[] } = useQuery({

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Social from '../social/Social';
@@ -13,6 +13,8 @@ const Login = () => {
   const axiosPublic=useAxiosPublic()
   const navigate = useNavigate();
   const location = useLocation();
+  // State to track the current theme
+   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const from = location.state?.from?.pathname || "/";
   const {
     register,
@@ -49,12 +51,12 @@ const Login = () => {
   }
 
   return (
-    <div>
+    <div className='my-16'>
       <div className="hero bg-orange-100 min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">Login now!</h1>
-            <p className="py-6">
+            <p className={`py-6 ${theme === 'dark'?'text-[#3e2723]':'text-black'}`}>
               Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
               quasi. In deleniti eaque aut repudiandae et a id nisi.
             </p>
@@ -65,7 +67,7 @@ const Login = () => {
               <div className="form-control">
 
                 <label className="label">
-                  <span className="label-text">Email</span>
+                  <span className="label-text text-black">Email</span>
                 </label>
                 <input {...register('email', { required: true })} type="email" placeholder="Enter Your Email" className="input input-bordered" />
                 {errors.email && <p role="alert" className='text-red-600'>email is required</p>}
@@ -73,7 +75,7 @@ const Login = () => {
 
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Password</span>
+                  <span className="label-text text-black">Password</span>
                 </label>
                 <input type="password" {...register("password", {
                   required: true,
@@ -96,7 +98,7 @@ const Login = () => {
                 <input className="btn btn-primary" type="submit" value='Sign In' />
               </div>
             </form>
-            <p className='text-center my-2'><small>you haven't account go to </small><Link className='font-bold' to='/register'>register</Link></p>
+            <p className={`text-center my-2 ${theme==='dark'?'text-[#3e2723]':'text-black'}`}><small>you haven't account go to </small><Link className='font-bold' to='/register'>register</Link></p>
             <Social></Social>
           </div>
         </div>

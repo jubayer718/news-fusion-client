@@ -8,7 +8,7 @@ const StatisticsPage = () => {
 
   // Fetch users data
   useEffect(() => {
-    fetch("http://localhost:9000/statistics") // Replace with your backend API endpoint
+    fetch("http://localhost:9000//statistics") // Replace with your backend API endpoint
       .then((res) => res.json())
       .then((data) => {
         const allUsers = data.length;
@@ -26,7 +26,7 @@ const StatisticsPage = () => {
       <h1 className="text-3xl font-bold text-center mb-8">User Statistics</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* All Users */}
-        <div className="bg-white shadow-lg rounded-lg p-6 text-center">
+        <div className=" shadow-lg rounded-lg p-6 text-center">
           <h2 className="text-2xl font-bold mb-4">All Users</h2>
           <p className="text-4xl font-extrabold text-blue-600">
             <CountUp start={0} end={allUsersCount} duration={2.5} />
@@ -34,7 +34,7 @@ const StatisticsPage = () => {
         </div>
 
         {/* Normal Users */}
-        <div className="bg-white shadow-lg rounded-lg p-6 text-center">
+        <div className=" shadow-lg rounded-lg p-6 text-center">
           <h2 className="text-2xl font-bold mb-4">Normal Users</h2>
           <p className="text-4xl font-extrabold text-green-600">
             <CountUp start={0} end={normalUsersCount} duration={2.5} />
@@ -42,7 +42,7 @@ const StatisticsPage = () => {
         </div>
 
         {/* Premium Users */}
-        <div className="bg-white shadow-lg rounded-lg p-6 text-center">
+        <div className=" shadow-lg rounded-lg p-6 text-center">
           <h2 className="text-2xl font-bold mb-4">Premium Users</h2>
           <p className="text-4xl font-extrabold text-orange-600">
             <CountUp start={0} end={premiumUsersCount} duration={2.5} />

@@ -61,49 +61,22 @@ const Home = () => {
 },[])
 
  
-  // Slider settings
-  // const sliderSettings = {
-  //   dots: true,
-  //   infinite: true,
-  //   speed: 500,
-  //   slidesToShow: 3,
-  //   slidesToScroll: 1,
-  //   responsive: [
-  //     { breakpoint: 1024, settings: { slidesToShow: 2 } },
-  //     { breakpoint: 768, settings: { slidesToShow: 1 } },
-  //   ],
-  // };
-
-
-// const trendingArticles = [
-//   { id: 1, title: "Article 1", publisher: "Publisher A", image: "https://via.placeholder.com/150" },
-//   { id: 2, title: "Article 2", publisher: "Publisher B", image: "https://via.placeholder.com/150" },
-//   { id: 3, title: "Article 3", publisher: "Publisher C", image: "https://via.placeholder.com/150" },
-//   // Add 3 more articles
-// ];
-
-// const publishers = [
-//   { id: 1, name: "Publisher A", articleCount: 10 },
-//   { id: 2, name: "Publisher B", articleCount: 20 },
-//   { id: 3, name: "Publisher C", articleCount: 15 },
-//   // Add more publishers if needed
-// ];
 
   return (
     <div className="">
     {/* Open the modal using document.getElementById('ID').showModal() method */}
 {/* <button className="btn" onClick={()=>document.getElementById('my_modal_1').showModal()}>open modal</button> */}
 <dialog id="my_modal_1" className="modal">
-  <div className="modal-box">
+  <div className="modal-box ">
     <h3 className="font-bold text-lg">Hello!</h3>
    <p className="py-4">
             Unlock premium features by subscribing to our service. Click the button below to learn more!
           </p>
-    <div className="modal-action">
-            <form method="dialog">
-           <Link to='/subscription'><button className="btn bg-orange-400">Go for subscription</button> </Link>
+    <div className="modal-action ">
+            <form method="dialog" >
+           <Link to='/subscription'><button className="btn text-black bg-orange-400">Go for subscription</button> </Link>
         {/* if there is a button in form, it will close the modal */}
-        <button className="btn bg-orange-400">Close</button>
+        <button className=" text-black btn bg-orange-400">Close</button>
       </form>
     </div>
   </div>
@@ -119,8 +92,8 @@ const Home = () => {
         <div className="container mx-auto">
             <h2 className="text-3xl font-bold text-center mb-6">Trending Articles</h2>
             
-            <div className="">
-              <AwesomeSlider animation="cubeAnimation">
+            <div >
+              <AwesomeSlider   animation="cubeAnimation">
     {trendingArticles.map((article) => (
           
                 <div key={article._id} className="w-full">
@@ -129,14 +102,14 @@ const Home = () => {
               <img
                 src={article.image}
                 alt={article.title}
-                className="lg:h-[520px] h-44 w-full object-cover"
+                className="lg:h-[560px] md:h-[320px] h-44 w-full object-cover"
               />
-              <div className="p-4">
+              <div className="p-5">
                 <h3 className="text-lg font-bold">{article.title}</h3>
                 <p className="text-sm text-gray-600">{article.publisher}</p>
-                <p className="text-sm text-gray-500 mt-2">{article.description}</p>
+                <p className="text-sm text-gray-500">{article.description.slice(0,100)}...</p>
               </div>
-              <div className="p-4 flex items-center">
+              <div className="p-4 mb-6 lg:flex items-center md:blok  hidden ">
                 <img
                   src={article.author.photo}
                   alt={article.author.name}
@@ -184,7 +157,7 @@ const Home = () => {
         <h2 className="text-3xl font-bold text-center mb-6">All Publishers</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {articles.slice(0,6).map((article) => (
-            <div key={article.id} className="bg-gray-100 p-4 rounded-lg text-center">
+            <div key={article._id} className=" shadow-lg p-4 rounded-lg text-center">
               <h3 className="text-lg font-bold">{article.publisher}</h3>
               {/*  */}
               {/* <p className="text-sm text-gray-600">Articles: {article.articleCount}</p> */}
@@ -199,15 +172,15 @@ const Home = () => {
       <section>
         <h2 className="text-3xl font-bold text-center mb-6">Statistics</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-blue-100 p-6 rounded-lg text-center">
+          <div className="shadow-lg p-6 rounded-lg text-center">
             <h3 className="text-2xl font-bold">500+</h3>
             <p className="text-lg">Articles Published</p>
           </div>
-          <div className="bg-green-100 p-6 rounded-lg text-center">
+          <div className="shadow-lg p-6 rounded-lg text-center">
             <h3 className="text-2xl font-bold">200+</h3>
             <p className="text-lg">Active Publishers</p>
           </div>
-          <div className="bg-yellow-100 p-6 rounded-lg text-center">
+          <div className="shadow-lg p-6 rounded-lg text-center">
             <h3 className="text-2xl font-bold">100K+</h3>
             <p className="text-lg">Monthly Views</p>
           </div>
@@ -218,16 +191,16 @@ const Home = () => {
       <section>
         <h2 className="text-3xl font-bold text-center mb-6">Plans</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-gray-100 p-6 rounded-lg text-center shadow-lg">
+          <div className="shadow-lg p-6 rounded-lg text-center ">
             <h3 className="text-xl font-bold">Basic</h3>
             <p className="text-lg mt-2">$5/month</p>
-            <ul className="text-sm text-gray-600 mt-4 space-y-2">
+            <ul className="text-sm  mt-4 space-y-2">
               <li>✔ 10 Articles</li>
               <li>✔ Basic Support</li>
             </ul>
         <Link to='/subscription'>   <button className="btn mt-6 bg-blue-500 text-white px-4 py-2 rounded">Choose</button></Link>
           </div>
-          <div className="bg-gray-100 p-6 rounded-lg text-center shadow-lg">
+          <div className="shadow-lg p-6 rounded-lg text-center ">
             <h3 className="text-xl font-bold">Pro</h3>
             <p className="text-lg mt-2">$15/month</p>
             <ul className="text-sm text-gray-600 mt-4 space-y-2">
@@ -236,7 +209,7 @@ const Home = () => {
             </ul>
             <Link to='/subscription'><button className="btn mt-6 bg-green-500 text-white px-4 py-2 rounded">Choose</button></Link>
           </div>
-          <div className="bg-gray-100 p-6 rounded-lg text-center shadow-lg">
+          <div className="shadow-lg p-6 rounded-lg text-center ">
             <h3 className="text-xl font-bold">Enterprise</h3>
             <p className="text-lg mt-2">Custom Pricing</p>
             <ul className="text-sm text-gray-600 mt-4 space-y-2">
@@ -251,7 +224,7 @@ const Home = () => {
       <section className="py-10">
         <h2 className="text-3xl font-bold text-center mb-6">Featured Authors</h2>
         <div className="grid grid-cols-2 gap-6">
-          <div className="p-6 bg-white rounded-lg shadow">
+          <div className="p-6 rounded-lg shadow">
             <img src="https://i.ibb.co/BZZ5WKv/unsplash-Eh-Tc-C9s-YXsw-4.png" alt="Author" className="rounded-full w-16 h-16 mb-4 mx-auto" />
             <h3 className="font-bold text-xl text-center">MD. Jubaer Ahmed Naem</h3>
             <p className="text-center">Articles: 45 | Popular Article: "10 Tips for Business Growth"</p>
@@ -262,7 +235,7 @@ const Home = () => {
       </section>
 
       {/* 7. New Unique Section 2: Weekly Poll or Quiz */}
-      <section className="py-10 bg-gray-100">
+      <section className="py-10 shadow-lg mb-5">
         <h2 className="text-3xl font-bold text-center mb-6">Weekly Poll</h2>
         <div className="text-center">
           <h3 className="font-bold text-xl">Which topic interests you most this week?</h3>

@@ -13,8 +13,8 @@ const AdminAllArticles = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [usersPerPage, setUsersPerPage] = useState(5);
   const [articles, refetch] = useArticles(currentPage,usersPerPage);
-  const numberOfPages = Math.ceil(count / usersPerPage);
-  const pages = [...Array(numberOfPages).keys()]
+ const numberOfPages = count && usersPerPage ? Math.ceil(count / usersPerPage) : 0;
+ const pages = numberOfPages > 0 ? [...Array(numberOfPages).keys()] : [];
 
 
 const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility control
@@ -174,23 +174,23 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility contr
 
       <SectionTitle heading={'All Articles'} subHeading={'Explore a Wide Range of Topics and Insights'}></SectionTitle>
 
-      <div className="p-6 max-w-7xl mx-auto bg-white shadow-md rounded-md">
+      <div className="p-6 hover:text-black max-w-7xl mx-auto  shadow-md rounded-md">
 
 
         <table className="table table-auto w-full border-collapse border border-gray-200">
           <thead>
             <tr className="bg-gray-100">
-              <th className="border border-gray-200 p-2">Title</th>
-              <th className="border border-gray-200 p-2">Author</th>
-              <th className="border border-gray-200 p-2">Posted Date</th>
-              <th className="border border-gray-200 p-2">Status</th>
-              <th className="border border-gray-200 p-2">Publisher</th>
-              <th className="border border-gray-200 p-2">Actions</th>
+              <th className="border text-black border-gray-200 p-2">Title</th>
+              <th className="border text-black border-gray-200 p-2">Author</th>
+              <th className="border text-black border-gray-200 p-2">Posted Date</th>
+              <th className="border text-black border-gray-200 p-2">Status</th>
+              <th className="border text-black border-gray-200 p-2">Publisher</th>
+              <th className="border text-black border-gray-200 p-2">Actions</th>
             </tr>
           </thead>
           <tbody>
             {articles.map((article) => (
-              <tr key={article._id} className="hover:bg-gray-50">
+              <tr key={article._id} className="hover:bg-orange-200 hover:text-black">
                 <td className="border  border-gray-200 p-2">{article.title}</td>
                 <td className="border border-gray-200 p-2">
                   <div className="flex items-center space-x-3">
@@ -201,7 +201,7 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility contr
                     />
                     <div>
                       <p className="font-medium">Name: {article.author.name}</p>
-                      <p className="text-sm text-gray-500">Email: {article.author.email}</p>
+                      <p className="text-sm ">Email: {article.author.email}</p>
                     </div>
                   </div>
                 </td>
@@ -234,7 +234,7 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility contr
                 <td className="border border-gray-200 p-2 space-y-2">
                   {/* approve article */}
                   <button
-                    className="btn btn-sm btn-success w-full"
+                    className="btn btn-sm hover:bg-green-400 btn-success w-full"
                     onClick={() => onApprove(article._id)}
                     disabled={article.status === "approved"}
                   >

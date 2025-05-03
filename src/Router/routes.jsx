@@ -24,6 +24,11 @@ import AdminHome from "../Dashboard/AdminHome";
 import UpdateProfilePage from "../pages/UpdateProfilePage";
 import OverviewPage from "../pages/Overview/OverviewPage";
 import RecentDetails from "../AllComponents/RecentNewsDetails/RecentDetails";
+import UserDashboard from "../AllComponents/userDashboard/UserDashboard";
+import AdminProfile from "../Dashboard/admin/AdminProfile";
+import UpdateProfile from "../Dashboard/profileUpdate/UpdateProfile";
+import UsersOverview from "../pages/UsersOverview/UsersOverview";
+import UsersProfile from "../pages/UsersProfile/UsersProfile";
 
 export const routes = createBrowserRouter([
   {
@@ -51,12 +56,12 @@ export const routes = createBrowserRouter([
       }, {
         path: 'articleDetails/:id',
         element: <PrivateRoute><ArticleDetails></ArticleDetails></PrivateRoute>,
-        loader:({params})=>fetch(`http://localhost:9000/articles/${params.id}`) 
+        loader:({params})=>fetch(`http://localhost:9000//articles/${params.id}`) 
       },
       {
         path:'articleUpdate/:id',
         element: <PrivateRoute><UpdateArticle></UpdateArticle></PrivateRoute>,
-         loader:({params})=>fetch(`http://localhost:9000/articles/update/${params.id}`) 
+         loader:({params})=>fetch(`http://localhost:9000//articles/update/${params.id}`) 
       },
       {
         path: "myProfile",
@@ -65,7 +70,7 @@ export const routes = createBrowserRouter([
       {
         path: 'updateProfile',
         element: <PrivateRoute><UpdateProfilePage></UpdateProfilePage></PrivateRoute>,
-        // loader:({params})=>fetch(`http://localhost:9000/users/update/${params.email}`)
+        // loader:({params})=>fetch(`http://localhost:9000//users/update/${params.email}`)
       }
       ,
       {
@@ -85,9 +90,23 @@ export const routes = createBrowserRouter([
       , {
         path: "/recent/details/:id",
         element: <PrivateRoute><RecentDetails></RecentDetails></PrivateRoute>,
-        loader:({params})=>fetch(`http://localhost:9000/recent/details/${params.id}`)
+        loader:({params})=>fetch(`http://localhost:9000//recent/details/${params.id}`)
       }
     ]
+  }, {
+    path: "/userDashboard",
+    element: <PrivateRoute><UserDashboard></UserDashboard></PrivateRoute>,
+    children: [
+      {
+        path: 'userOverview',
+        element:<PrivateRoute><UsersOverview></UsersOverview></PrivateRoute>
+      }, {
+        path: "userProfile",
+        element:<PrivateRoute><UsersProfile></UsersProfile></PrivateRoute>
+      }
+      
+    ]
+
   }, {
     path: '/dashboard',
     element:<AdminRoute> <Dashboard></Dashboard></AdminRoute>,
@@ -100,18 +119,25 @@ export const routes = createBrowserRouter([
       {
         path: 'allUsers',
         element: <AdminRoute><AllUsers></AllUsers></AdminRoute>,
-        loader:()=>fetch(`http://localhost:9000/usersCount`)
+        loader:()=>fetch(`http://localhost:9000//usersCount`)
       },
       {
         path: 'allArticles',
         element: <AdminRoute><AdminAllArticles></AdminAllArticles></AdminRoute>,
-         loader: () => fetch(`http://localhost:9000/articleCount`)
+         loader: () => fetch(`http://localhost:9000//articleCount`)
       }, {
         path: 'addPublishers',
         element:<AdminRoute><AddPublisher></AddPublisher></AdminRoute>
       }, {
         path: "overview",
         element:<AdminRoute><OverviewPage></OverviewPage></AdminRoute>
+      }, {
+        path: "adminProfile",
+        element:<AdminRoute><AdminProfile></AdminProfile></AdminRoute>
+      }, {
+        path: "updateProfile/:id",
+        element: <AdminRoute><UpdateProfile></UpdateProfile></AdminRoute>,
+        loader:({params})=>fetch(`http://localhost:9000//singleAdmin/${params.id}`)
       }
     ]
   }

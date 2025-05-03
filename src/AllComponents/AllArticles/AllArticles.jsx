@@ -102,7 +102,7 @@ const AllArticles = () => {
               <option value='asc'>Ascending Order</option>
             </select>
           </div> */}
-          <button onClick={handleReset} className='btn bg-orange-400'>Reset</button>
+          <button onClick={handleReset} className='btn text-black bg-orange-400'>Reset</button>
         </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-3">
         {approvedArticles.map(article =>

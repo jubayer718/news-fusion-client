@@ -10,17 +10,20 @@ import {
   QueryClientProvider,
  
 } from '@tanstack/react-query'
+import { ThemeProvider } from './Provider/ThemeProvider/ThemeProvider.jsx'
 
 const queryClient = new QueryClient()
 createRoot(document.getElementById('root')).render(
   <StrictMode>
    
+    <ThemeProvider>
        <AuthProvider>
       <QueryClientProvider client={queryClient}>
         
    <RouterProvider router={routes}></RouterProvider>
   </QueryClientProvider>
     </AuthProvider>
+      </ThemeProvider>
    
   </StrictMode>,
 )

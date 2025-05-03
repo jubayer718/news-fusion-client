@@ -5,7 +5,7 @@ import NewsCard from "../../shared/newCard/NewsCard";
 const RecentNews = () => {
   const [hotNews, setHotNews] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:9000/news/recent")
+    fetch("http://localhost:9000//news/recent")
         .then(res => res.json())
         .then(data => setHotNews(data));
 }, []);

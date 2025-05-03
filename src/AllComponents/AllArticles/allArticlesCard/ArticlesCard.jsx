@@ -18,7 +18,7 @@ const ArticlesCard = ({ article }) => {
   return (
       <div
       className={`card ${
-        isPremium ? 'bg-gradient-to-r from-yellow-400 to-orange-500 text-white' : 'bg-white text-black'
+        isPremium ? 'bg-gradient-to-r from-yellow-400 to-orange-500 text-white' : '" "'
       } shadow-xl p-4 rounded-lg border`}
     >
       {/* Premium Badge */}

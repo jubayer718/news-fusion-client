@@ -42,14 +42,14 @@ const MyArticles = () => {
 });
   }
   return (
-   <div className="overflow-x-auto h-screen">
+   <div className="overflow-x-auto h-screen my-20">
   <table className="table">
     {/* head */}
     <thead>
       <tr>
         <th>
           <label>
-          #
+          No
           </label>
         </th>
         <th>image</th>
@@ -86,9 +86,9 @@ const MyArticles = () => {
               <td className=''>{ article.isPremium?'Yes':'No'}</td>
              
         <th className='flex gap-4 flex-col items-center'>
-         <Link to={`/articleDetails/${article._id}`}> <button className="btn bg-orange-300 btn-ghost btn-xs">details</button></Link>
-            <Link to={`/articleUpdate/${article._id}`}><button  className="btn btn-ghost bg-green-200 btn-xs">Update</button></Link>
-                <button onClick={() => handleDelete(article._id)} className="btn btn-ghost bg-red-400 btn-xs">Delete</button>
+         <Link to={`/articleDetails/${article._id}`}> <button className="btn bg-orange-300 btn-ghost text-black btn-xs">details</button></Link>
+            <Link to={`/articleUpdate/${article._id}`}><button  className="btn btn-ghost bg-green-200 text-black btn-xs">Update</button></Link>
+                <button onClick={() => handleDelete(article._id)} className="btn btn-ghost bg-red-400 text-black btn-xs">Delete</button>
         </th>
       </tr>
       ))}

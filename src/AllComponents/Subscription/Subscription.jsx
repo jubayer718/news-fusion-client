@@ -27,7 +27,7 @@ const Subscription = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6 mt-16">
+    <div className="min-h-screen flex flex-col items-center p-6 mt-16">
       {/* Attractive Banner */}
       <div className="w-full max-w-4xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-lg p-8 text-center shadow-lg">
         <h1 className="text-4xl font-bold mb-4">Become a Premium Member!</h1>
@@ -38,15 +38,15 @@ const Subscription = () => {
       </div>
 
       {/* Subscription Form */}
-      <div className="mt-10 w-full max-w-md bg-white rounded-lg shadow-lg p-6">
+      <div className="mt-10 w-full max-w-md  rounded-lg shadow-lg p-6">
         <h2 className="text-2xl font-bold mb-4">Choose Your Subscription Plan</h2>
-        <label className="block text-gray-700 text-sm font-bold mb-2">
+        <label className="block  text-sm font-bold mb-2">
           Subscription Period
         </label>
         <select
           value={subscriptionPeriod}
           onChange={handleSubscriptionChange}
-          className="block w-full px-3 py-2 border rounded-md bg-gray-100 text-gray-700 focus:ring-2 focus:ring-indigo-500"
+          className="block w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500"
         >
           <option value="">Select a period</option>
           {/* <option value="1-minute">1 Minute (Free for Testing)</option>

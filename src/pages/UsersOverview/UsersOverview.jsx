@@ -4,7 +4,7 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pi
 import axios from "axios";
 
 
-const OverviewPage = () => {
+const UsersOverview = () => {
     const [stats, setStats] = useState({ users: 100, premiumUsers: 400, articles:500, views: 6000 });
   const [userGrowth, setUserGrowth] = useState([
     { month: "January", users: 500 },
@@ -82,4 +82,4 @@ const OverviewPage = () => {
   );
 };
 
-export default OverviewPage;
+export default UsersOverview;

@@ -55,13 +55,13 @@ const AddPublisher = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Publisher Name</span>
+              <span className="label-text text-black">Publisher Name</span>
             </label>
             <input {...register('publisher', { required: true })} type="text" placeholder="Publisher name" className="input input-bordered" />
             {errors.publisher && <p role="alert" className='text-red-600'>publisher is required</p>}
           </div>
           <div className="label">
-            <span className="label-text">Pick a file</span>
+            <span className="label-text text-black">Pick a file</span>
 
           </div>
           <input {...register('image', { required: true })} type="file" className="file-input file-input-bordered w-full" />
