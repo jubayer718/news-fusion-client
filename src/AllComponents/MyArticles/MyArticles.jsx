@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useMyArticle from '../../Hooks/useMyArticle';
 import UseAuth from '../../Hooks/UseAuth';
 import { Link } from 'react-router-dom';
@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 const MyArticles = () => {
   const { loading } = UseAuth();
   const axiosSecure = useAxiosSecure();
+  const [selectedReason,setSelectedReason]=useState("")
    
   if (loading) {
     return <progress className="progress w-56"></progress>
@@ -40,6 +41,11 @@ const MyArticles = () => {
    } 
   }
 });
+  }
+
+  const handleShowReason = (reason) => {
+    setSelectedReason(reason)
+     document.getElementById("my_modal_1").showModal();
   }
   return (
    <div className="overflow-x-auto h-screen my-20">
@@ -82,7 +88,8 @@ const MyArticles = () => {
          
               </td>
             
-              <td className=''>{ article.status } {article.status==='declined'&&<button onClick={()=>document.getElementById('my_modal_1').showModal()}  className='btn btn-xs  bg-orange-400'>see cause</button>}</td>
+              <td className=''>{article.status} {article.status === 'declined' && <button   onClick={() => handleShowReason(article.reason)} className='btn btn-xs  bg-orange-400'>see cause</button>}</td>
+              {/* onClick={()=>document.getElementById('my_modal_1').showModal()} */}
               <td className=''>{ article.isPremium?'Yes':'No'}</td>
              
         <th className='flex gap-4 flex-col items-center'>
@@ -97,10 +104,14 @@ const MyArticles = () => {
      
       {/* Open the modal using document.getElementById('ID').showModal() method */}
 {/* <button className="btn" onClick={()=>document.getElementById('my_modal_1').showModal()}>open modal</button> */}
+    </tbody>
+   
+  </table>
 <dialog id="my_modal_1" className="modal">
   <div className="modal-box">
    
-    <p className="py-4">The topic covered in this article does not align with our platform’s focus or the interests of our audience. Please ensure submissions match our content guidelines.</p>
+              <p className="py-4">{selectedReason }</p>
+             
     <div className="modal-action">
       <form method="dialog">
         {/* if there is a button in form, it will close the modal */}
@@ -109,9 +120,6 @@ const MyArticles = () => {
     </div>
   </div>
 </dialog>
-    </tbody>
-   
-  </table>
 </div>
   );
 };
