@@ -23,11 +23,11 @@ const OverviewPage = () => {
 
   // useEffect(() => {
   //   // Fetch overall stats
-  //   axios.get("http://localhost:9000//dashboard/stats").then((res) => setStats(res.data));
+  //   axios.get("http://localhost:9000/dashboard/stats").then((res) => setStats(res.data));
   //   // Fetch user growth data
-  //   axios.get("http://localhost:9000//dashboard/user-growth").then((res) => setUserGrowth(res.data));
+  //   axios.get("http://localhost:9000/dashboard/user-growth").then((res) => setUserGrowth(res.data));
   //   // Fetch category distribution data
-  //   axios.get("http://localhost:9000//dashboard/category-distribution").then((res) => setCategoryData(res.data));
+  //   axios.get("http://localhost:9000/dashboard/category-distribution").then((res) => setCategoryData(res.data));
   // }, []);
 
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#FF4567"];

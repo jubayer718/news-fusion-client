@@ -11,7 +11,7 @@ const AdminProfile = () => {
   }
   const [singleUser, setUser] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:9000//singleUsers/${user.email}`)
+    fetch(`http://localhost:9000/singleUsers/${user.email}`)
       .then(res => res.json())
     .then(data=>setUser(data))
   },[])

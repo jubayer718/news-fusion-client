@@ -9,10 +9,13 @@ import 'react-awesome-slider/dist/custom-animations/cube-animation.css';
 import StatisticsPage from "../pages/UsersCount/StatisticsPage";
 import RecentNews from "../AllComponents/RecentNews/RecentNews";
 import GlobalNews from "../AllComponents/GlobalNews/GlobalNews";
+import { useTheme } from "../Provider/ThemeProvider/ThemeProvider";
+import Swal from "sweetalert2";
 
 
 const Home = () => {
   const axiosPublic = useAxiosPublic()
+  const {theme}=useTheme()
   const [articles, setArticles] = useState([]);
     const [trendingArticles, setTrendingArticles] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -49,18 +52,30 @@ const Home = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    fetch('http://localhost:9000/homeArticles')
-      .then(res => res.json())
-      .then(data => {
-          // Sort articles by viewCount and take top 6
-        const sortedArticles = [...data].sort((a, b) => b.viewCount - a.viewCount);
-        setTrendingArticles(sortedArticles.slice(0, 6));
-        setArticles(data)
-      })
-},[])
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const { data } = await axiosPublic.get('/homeArticles');
+      console.log(data);
 
- 
+      const sortedArticles = [...data].sort((a, b) => b.viewCount - a.viewCount);
+      setTrendingArticles(sortedArticles.slice(0, 6));
+
+      const uniquePublishers = [...new Set(data.map(item => item.publisher))];
+      setArticles(uniquePublishers);
+    } catch (error) {
+      // Swal.fire(error?.message)
+      console.error(error);
+    }
+  };
+
+  fetchData();
+}, []);
+
+
+  const isDark = theme === 'dark';
+  const bg_color = isDark ? 'bg-transparent' : 'bg-white'
+  const text_color=isDark?'text-gray-400':'text-gray-600'
 
   return (
     <div className="">
@@ -98,16 +113,16 @@ const Home = () => {
           
                 <div key={article._id} className="w-full">
                
-            <div className="bg-white  shadow-lg rounded-lg">
+        <div className={` ${bg_color}  shadow-lg rounded-lg`}>
               <img
                 src={article.image}
                 alt={article.title}
                 className="lg:h-[560px] md:h-[320px] h-44 w-full object-cover"
               />
               <div className="p-5">
-                <h3 className="text-lg font-bold">{article.title}</h3>
-                <p className="text-sm text-gray-600">{article.publisher}</p>
-                <p className="text-sm text-gray-500">{article.description.slice(0,100)}...</p>
+                <h3 className={`${text_color} text-lg font-bold`}>{article.title}</h3>
+            <p className={`${text_color} text-sm text-gray-600`}>{article.publisher}</p>
+            <p className={`${text_color} text-sm text-gray-500`}>{article.description.slice(0,100)}...</p>
               </div>
               <div className="p-4 mb-6 lg:flex items-center md:blok  hidden ">
                 <img
@@ -116,8 +131,8 @@ const Home = () => {
                   className="h-10 w-10 rounded-full mr-4"
                 />
                 <div>
-                  <p className="text-sm font-bold">{article.author.name}</p>
-                  <p className="text-sm text-gray-500">{article.postedDate.slice(0, 10)}</p>
+              <p className={`${text_color} text-sm font-bold`}>{article.author.name}</p>
+              <p className={`${text_color} text-sm text-gray-500`}>{article.postedDate.slice(0, 10)}</p>
                 </div>
               </div>
             </div>
@@ -156,9 +171,9 @@ const Home = () => {
       <section>
         <h2 className="text-3xl font-bold text-center mb-6">All Publishers</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {articles.slice(0,6).map((article) => (
-            <div key={article._id} className=" shadow-lg p-4 rounded-lg text-center">
-              <h3 className="text-lg font-bold">{article.publisher}</h3>
+          {articles.slice(0,6).map((article,idx) => (
+            <div key={idx} className=" shadow-lg p-4 rounded-lg text-center">
+              <h3 className="text-lg font-bold">{article}</h3>
               {/*  */}
               {/* <p className="text-sm text-gray-600">Articles: {article.articleCount}</p> */}
             </div>

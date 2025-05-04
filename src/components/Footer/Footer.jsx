@@ -1,66 +1,16 @@
-// import React from 'react';
-
-// const Footer = () => {
-//   return (
-//     <div>
-    
-//       {/* Footer Section */}
-//       <footer className="bg-gray-800 text-white p-6 text-center">
-//         <footer className="footer  p-10">
-//   <aside>
-//    <img src="" alt="" />
-//     <p>
-//     <span className='text-2xl font-bold text-orange-600'>News</span> Fusion
-   
-//     </p>
-//   </aside>
-//   <nav>
-//     <h6 className="footer-title">Services</h6>
-//     <a className="link link-hover">Branding</a>
-//     <a className="link link-hover">Design</a>
-//     <a className="link link-hover">Marketing</a>
-//     <a className="link link-hover">Advertisement</a>
-//   </nav>
-//   <nav>
-//     <h6 className="footer-title">Company</h6>
-//     <a className="link link-hover">About us</a>
-//     <a className="link link-hover">Contact</a>
-//     <a className="link link-hover">Jobs</a>
-//     <a className="link link-hover">Press kit</a>
-//   </nav>
-//   <nav>
-//     <h6 className="footer-title">Legal</h6>
-//     <a className="link link-hover">Terms of use</a>
-//     <a className="link link-hover">Privacy policy</a>
-//     <a className="link link-hover">Cookie policy</a>
-//   </nav>
-// </footer>
-//         <p>&copy; {new Date().getFullYear()} My Publications. All rights reserved.</p>
-//       </footer>
-//     </div>
-//   );
-// };
-
-// export default Footer;
-
-
 
 import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gray-900 text-white py-10">
+     
       <div className="container mx-auto px-4 py-10 space-y-10">
         {/* Logo and About Section */}
         <div className="flex flex-wrap justify-between  space-y-6">
           <div className="w-full md:w-1/3 flex flex-col items-start">
-            {/* <img 
-              src="https://via.placeholder.com/150" 
-              alt="News Fusion Logo" 
-              className="w-16 h-16"
-            /> */}
             <h2 className="text-3xl font-bold text-orange-600 mt-5">News Fusion</h2>
-            <p className="text-gray-300 mt-2 w-96">
+            <p className="text-gray-300 mt-2 md:w-56 lg:w-96 w-96">
               Your one-stop destination for the latest news, trends, and updates across the globe. Stay informed, stay ahead.
             </p>
           </div>

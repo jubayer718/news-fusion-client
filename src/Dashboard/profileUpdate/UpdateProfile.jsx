@@ -22,7 +22,7 @@ const UpdateProfile = () => {
       address,
 
     }
-    const res= await axiosSecure.patch(`http://localhost:9000//updateAdminData/${data?.email}`,updatedValue)
+    const res= await axiosSecure.patch(`http://localhost:9000/updateAdminData/${data?.email}`,updatedValue)
     // console.log(res.data);
 
   }
