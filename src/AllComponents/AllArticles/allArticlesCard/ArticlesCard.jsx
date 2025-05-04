@@ -47,7 +47,7 @@ const ArticlesCard = ({ article }) => {
   }
   return (
     <div
-      className={`card ${cardBg} shadow-xl p-4 rounded-lg border ${borderColor}`}
+      className={`card ${cardBg} flex flex-col h-full shadow-xl p-4 rounded-lg border ${borderColor}`}
     >
       {/* Premium Badge */}
       {isPremium && (
@@ -65,7 +65,7 @@ const ArticlesCard = ({ article }) => {
       />
 
       {/* Article Content */}
-      <div className="p-4">
+      <div className="p-4 flex flex-col flex-grow">
         <h2 className={`text-xl font-bold ${cardTitleColor}`}><span>Title:</span> {title}</h2>
         <p className={`text-sm mt-2 mb-4 font-semibold ${descriptionColor}`}>
           <span>Description:</span> {description.length > 100 ? description.slice(0, 100) + '...' : description}
