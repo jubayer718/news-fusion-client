@@ -57,15 +57,19 @@ Follow these steps to set up the project locally:
    ```
 
 2. **Install dependencies**
- npm i firebase
+
    ```bash
    npm install
    ```
 
 3. **Configure Firebase**
 
-   * Add your Firebase project credentials to a `.env` file:
-
+  
+```
+ npm i firebase
+```
+ * Add your Firebase project credentials to a `.env` file:
+   
      ```
     apiKey: import.meta.env.VITE_apiKey,
     authDomain: import.meta.env.VITE_authDomain,
