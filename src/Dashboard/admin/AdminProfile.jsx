@@ -24,7 +24,7 @@ const AdminProfile = () => {
     <div className={`p-6 min-h-screen my-16`}>
       <div className="max-w-3xl mx-auto  p-6 rounded-lg shadow-lg">
         <div className="flex items-center space-x-6">
-          <img src={singleUser.photo} alt="Profile" className="w-24 h-24 rounded-full border-4 border-blue-500" />
+          <img src={singleUser.picPro} alt="Profile" className="w-24 h-24 rounded-full border-4 border-blue-500" />
           <div>
             <h2 className="text-2xl font-bold">{singleUser.name}</h2>
             <p className="text-gray-600 dark:text-gray-400">{singleUser.role}</p>

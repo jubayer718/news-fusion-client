@@ -1,10 +1,11 @@
-import { useLoaderData } from "react-router-dom";
+import { Navigate, useLoaderData, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../useAxiosSecure/UseAxiosSecure";
+import Swal from "sweetalert2";
 
 
 const UpdateProfile = () => {
   const data = useLoaderData();
-  // console.log(data);
+  const navigate=useNavigate()
   const axiosSecure = useAxiosSecure();
 
 
@@ -12,19 +13,22 @@ const UpdateProfile = () => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
-    const photo = form.photo.value;
+    const picPro = form.photo.value;
     const address = form.address.value;
     const phone = form.phone.value;
     const updatedValue = {
       name,
       phone,
-      photo,
+      picPro,
       address,
-      joinedDate: new Date().toLocaleDateString('en-US', { day: 'numeric', month: 'numeric', year:'numeric'})
+      
 
     }
     const res= await axiosSecure.patch(`/updateAdminData/${data?.email}`,updatedValue)
-    console.log(res.data);
+    if (res.data.modifiedCount > 0) {
+      Swal.fire('Profile Update successful')
+      navigate('/dashboard/adminProfile')
+    }
 
   }
   // phone: "+880 1712-345678",

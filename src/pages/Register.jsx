@@ -22,6 +22,7 @@ const Register = () => {
       email: data.email,
       picPro: data.photo,
       premiumTaken: null,
+      joinedDate: new Date().toLocaleDateString('en-US', { day: 'numeric', month: 'numeric', year:'numeric'})
     }
     // console.log(data),
 
