@@ -1,25 +1,30 @@
 import { useEffect, useState } from "react";
 import UseAuth from "../../Hooks/UseAuth";
 import { Link } from "react-router-dom";
+import useAxiosPublic from "../../axiosPublic/UseAxiosPublic";
 
 
 const AdminProfile = () => {
  
-  const { user,loading}=UseAuth()
+  const { user, loading } = UseAuth();
+  const axiosPublic = useAxiosPublic();
   if (loading) {
     return <progress className="progress w-56"></progress>
   }
   const [singleUser, setUser] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:9000/singleUsers/${user.email}`)
-      .then(res => res.json())
-    .then(data=>setUser(data))
+    const faceData = async () => {
+      const { data } = await axiosPublic.get(`/singleUsers/${user.email}`);
+      setUser(data)
+    }
+    faceData()
+   
   },[])
   return (
     <div className={`p-6 min-h-screen my-16`}>
       <div className="max-w-3xl mx-auto  p-6 rounded-lg shadow-lg">
         <div className="flex items-center space-x-6">
-          <img src={singleUser.profileImage} alt="Profile" className="w-24 h-24 rounded-full border-4 border-blue-500" />
+          <img src={singleUser.photo} alt="Profile" className="w-24 h-24 rounded-full border-4 border-blue-500" />
           <div>
             <h2 className="text-2xl font-bold">{singleUser.name}</h2>
             <p className="text-gray-600 dark:text-gray-400">{singleUser.role}</p>
@@ -42,7 +47,7 @@ const AdminProfile = () => {
           </Link>
         </div>
       </div>
-    </div>
+  </div>
   );
 };
 

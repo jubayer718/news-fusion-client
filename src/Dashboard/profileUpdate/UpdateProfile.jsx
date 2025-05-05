@@ -4,7 +4,7 @@ import useAxiosSecure from "../../useAxiosSecure/UseAxiosSecure";
 
 const UpdateProfile = () => {
   const data = useLoaderData();
-  console.log(data);
+  // console.log(data);
   const axiosSecure = useAxiosSecure();
 
 
@@ -20,10 +20,11 @@ const UpdateProfile = () => {
       phone,
       photo,
       address,
+      joinedDate: new Date().toLocaleDateString('en-US', { day: 'numeric', month: 'numeric', year:'numeric'})
 
     }
-    const res= await axiosSecure.patch(`http://localhost:9000/updateAdminData/${data?.email}`,updatedValue)
-    // console.log(res.data);
+    const res= await axiosSecure.patch(`/updateAdminData/${data?.email}`,updatedValue)
+    console.log(res.data);
 
   }
   // phone: "+880 1712-345678",
@@ -48,7 +49,7 @@ const UpdateProfile = () => {
           <label className="label">Phone</label>
           <input type="number" defaultValue={data?.phone} name="phone" className="input input-bordered" placeholder="Phone Number" />
           
-          <button type="submit" className="btn btn-neutral mt-4">Update</button>
+          <button  type="submit" className="btn btn-neutral mt-4">Update</button>
         </form>
       </div>
     </div>
