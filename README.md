@@ -16,9 +16,9 @@
 
 ## 🌟 Features
 
-● Users can add important and latest news they know.
-● Users can purchase premium to read premium articles.
-● Users can see an overview of this website on their dashboard.
+* Users can add important and latest news they know.
+* Users can purchase premium to read premium articles.
+* Users can see an overview of this website on their dashboard.
 
 ---
 
