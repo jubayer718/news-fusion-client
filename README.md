@@ -16,14 +16,9 @@
 
 ## 🌟 Features
 
-* 🧑‍💻 User-friendly interface with responsive design
-* 🔐 Secure user authentication and access control
-* 🚫 Users cannot delete or edit others' articles
-* ✅ Admin-only approval process for new submissions
-* 📝 Articles remain in a “pending” state until approved
-* 🧭 Safe and private browsing for all users
-* 🔒 Role-based routes for admin and regular users
-* 📄 Approved articles appear in the public listings
+● Users can add important and latest news they know.
+● Users can purchase premium to read premium articles.
+● Users can see an overview of this website on their dashboard.
 
 ---
 
