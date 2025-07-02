@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { easeIn, motion } from 'motion/react';
+import { Helmet } from 'react-helmet';
 
 const Subscription = () => {
   const [subscriptionPeriod, setSubscriptionPeriod] = useState('');
@@ -28,6 +29,13 @@ const Subscription = () => {
   };
 
   return (
+    <>
+    
+    <Helmet>
+        <title>Subscription | News fusion</title>
+        <meta name="description" content="Welcome to subscription page of News fusion"/>
+      </Helmet>
+      
     <motion.div initial={{ opacity:0}} animate={{opacity:1, transition:{duration:2, ease:easeIn}}} className="min-h-screen flex flex-col items-center p-6 mt-16">
       {/* Attractive Banner */}
       <div className="w-full max-w-4xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-lg p-8 text-center shadow-lg">
@@ -66,6 +74,7 @@ const Subscription = () => {
         </button>
       </div>
     </motion.div>
+    </>
   )
 }
 

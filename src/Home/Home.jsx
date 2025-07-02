@@ -12,6 +12,7 @@ import GlobalNews from "../AllComponents/GlobalNews/GlobalNews";
 import { useTheme } from "../Provider/ThemeProvider/ThemeProvider";
 import Swal from "sweetalert2";
 import { easeIn, motion, stagger } from "motion/react"
+import { Helmet } from "react-helmet";
 
 
 const Home = () => {
@@ -84,6 +85,10 @@ const Home = () => {
 
   return (
     <div className="">
+      <Helmet>
+        <title>Home | News fusion</title>
+        <meta name="description" content="Welcome to Home page of News fusion"/>
+      </Helmet>
       {/* Open the modal using document.getElementById('ID').showModal() method */}
       {/* <button className="btn" onClick={()=>document.getElementById('my_modal_1').showModal()}>open modal</button> */}
       <dialog id="my_modal_1" className="modal">

@@ -7,6 +7,7 @@ import useAxiosSecure from '../../useAxiosSecure/UseAxiosSecure';
 import UseAuth from '../../Hooks/UseAuth';
 import Swal from 'sweetalert2';
 import {  easeInOut, motion } from 'motion/react';
+import { Helmet } from 'react-helmet';
 
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
@@ -74,6 +75,11 @@ const [publisher,refetch]=usePublisher()
     { value: "Entertainment", label: "Entertainment" },
   ];
   return (
+    <>
+     <Helmet>
+        <title>Add Article | News fusion</title>
+        <meta name="description" content="Welcome to add article page of News fusion"/>
+      </Helmet>
     <motion.div initial={{scale:0}} animate={{scale:1, transition:{duration:4}    }}  className="hero bg-base-200 min-h-screen py-16">
       <div className="hero-content flex-col lg:flex-row-reverse">
        
@@ -155,6 +161,7 @@ const [publisher,refetch]=usePublisher()
         </motion.div>
       </div>
     </motion.div>
+    </>
   );
 };
 

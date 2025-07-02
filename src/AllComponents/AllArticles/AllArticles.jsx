@@ -7,6 +7,7 @@ import { Controller, useForm} from 'react-hook-form';
 import Select from 'react-select';
 import { useLoaderData } from "react-router-dom";
 import { useTheme } from "../../Provider/ThemeProvider/ThemeProvider";
+import { Helmet } from "react-helmet";
 
 const AllArticles = () => {
   const [filter, setFilter] = useState('');
@@ -36,6 +37,10 @@ const AllArticles = () => {
   ];
   return (
     <div className="my-20">
+       <Helmet>
+        <title>All Article | News fusion</title>
+        <meta name="description" content="Welcome to All article page of News fusion"/>
+      </Helmet>
          <div className='flex flex-col md:flex-row justify-center items-center gap-5 my-12 '>
           <div>
           <select
