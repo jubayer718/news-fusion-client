@@ -1,7 +1,6 @@
-import React from 'react';
 import Chart from 'react-google-charts';
 import useArticles from '../Hooks/useArticles';
-
+import { easeIn, motion } from 'motion/react';
 const AdminHome = () => {
   const [article] = useArticles()
    const publicationCounts = article.reduce((acc, article) => {
@@ -36,7 +35,10 @@ const AdminHome = () => {
     // Common chart styles
   const chartStyle = { width: "100%", height: "400px" };
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{opacity:1,transition:{duration:2, ease:easeIn}}}
+    >
    
 
 
@@ -62,7 +64,7 @@ const AdminHome = () => {
         options={{ title: "Monthly Views", hAxis: { title: "Month" }, vAxis: { title: "Views" } }}
         {...chartStyle}
       />
-    </div>
+    </motion.div>
   );
 };
 

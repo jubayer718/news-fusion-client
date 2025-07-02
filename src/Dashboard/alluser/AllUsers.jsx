@@ -5,7 +5,7 @@ import { FaTrash, FaUsers } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import { useLoaderData, useParams } from 'react-router-dom';
 import './pagination.css'
-
+import { easeIn, motion } from "motion/react";
 const AllUsers = () => {
 
   const axiosSecure = useAxiosSecure();
@@ -59,7 +59,10 @@ const AllUsers = () => {
     }
   }
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{opacity:1,transition:{duration:2, ease:easeIn}}}
+    >
     <div>
       <div className='flex justify-evenly'>
         <h2 className="text-3xl">All User</h2>
@@ -113,7 +116,7 @@ const AllUsers = () => {
           </select>
             </div>
     </div>
-    </div>
+    </motion.div>
   );
 };
 

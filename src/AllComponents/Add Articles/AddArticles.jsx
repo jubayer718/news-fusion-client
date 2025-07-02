@@ -6,6 +6,7 @@ import usePublisher from '../../Hooks/usePublisher';
 import useAxiosSecure from '../../useAxiosSecure/UseAxiosSecure';
 import UseAuth from '../../Hooks/UseAuth';
 import Swal from 'sweetalert2';
+import {  easeInOut, motion } from 'motion/react';
 
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
@@ -73,10 +74,10 @@ const [publisher,refetch]=usePublisher()
     { value: "Entertainment", label: "Entertainment" },
   ];
   return (
-    <div className="hero bg-base-200 min-h-screen py-16">
+    <motion.div initial={{scale:0}} animate={{scale:1, transition:{duration:4}    }}  className="hero bg-base-200 min-h-screen py-16">
       <div className="hero-content flex-col lg:flex-row-reverse">
        
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+        <motion.div initial={{scale:0}} animate={{scale:1, transition:{duration:5 , ease:easeInOut}}} className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <div className="form-control">
               <label className="label">
@@ -151,9 +152,9 @@ const [publisher,refetch]=usePublisher()
               <button type='submit' className="btn btn-primary">Submit</button>
             </div>
           </form>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

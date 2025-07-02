@@ -4,6 +4,7 @@ import UseAuth from '../../Hooks/UseAuth';
 import { Link } from 'react-router-dom';
 import useAxiosSecure from '../../useAxiosSecure/UseAxiosSecure';
 import Swal from 'sweetalert2';
+import { easeIn, motion } from 'motion/react';
 
 const MyArticles = () => {
   const { loading } = UseAuth();
@@ -48,7 +49,7 @@ const MyArticles = () => {
      document.getElementById("my_modal_1").showModal();
   }
   return (
-   <div className="overflow-x-auto h-screen my-20">
+   <motion.div initial={{opacity:0}} animate={{ opacity:1, transition:{duration:2, ease:easeIn}}} className="overflow-x-auto h-screen my-20">
   <table className="table">
     {/* head */}
     <thead>
@@ -120,7 +121,7 @@ const MyArticles = () => {
     </div>
   </div>
 </dialog>
-</div>
+</motion.div>
   );
 };
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { easeIn, motion } from 'motion/react';
 
 const Subscription = () => {
   const [subscriptionPeriod, setSubscriptionPeriod] = useState('');
@@ -27,7 +28,7 @@ const Subscription = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center p-6 mt-16">
+    <motion.div initial={{ opacity:0}} animate={{opacity:1, transition:{duration:2, ease:easeIn}}} className="min-h-screen flex flex-col items-center p-6 mt-16">
       {/* Attractive Banner */}
       <div className="w-full max-w-4xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-lg p-8 text-center shadow-lg">
         <h1 className="text-4xl font-bold mb-4">Become a Premium Member!</h1>
@@ -64,7 +65,7 @@ const Subscription = () => {
           Subscribe Now
         </button>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

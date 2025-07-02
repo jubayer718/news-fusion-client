@@ -2,14 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useSubscription from '../../../Hooks/useSubscription';
 import { useTheme } from '../../../Provider/ThemeProvider/ThemeProvider';
+import { easeIn, motion } from 'motion/react';
 
 const ArticlesCard = ({ article }) => {
   const { _id, title, tags, publisher, image, description, isPremium } = article;
   const { theme } = useTheme()
-
-  // const [hasSubscription, setHasSubscription] = useState(false);
-  // console.log(tags);
-  // const hasSubscription=true
   const [hasSubscription, refetch] = useSubscription()
 
   const isPremiumUser = hasSubscription.premiumTaken
@@ -46,7 +43,9 @@ const ArticlesCard = ({ article }) => {
     buttonClass = isDark ? 'bg-blue-700 text-white' : 'bg-blue-500 text-white';
   }
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{opacity:1, transition:{duration:2 , ease:easeIn}}}
       className={`card ${cardBg} flex flex-col h-full shadow-xl p-4 rounded-lg border ${borderColor}`}
     >
       {/* Premium Badge */}
@@ -85,7 +84,7 @@ const ArticlesCard = ({ article }) => {
         </button>
 
       </Link>
-    </div>
+    </motion.div>
   );
 };
 

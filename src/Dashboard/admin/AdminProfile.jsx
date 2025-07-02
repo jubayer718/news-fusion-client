@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import UseAuth from "../../Hooks/UseAuth";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../axiosPublic/UseAxiosPublic";
+import { easeIn, motion } from "motion/react";
 
 
 const AdminProfile = () => {
@@ -21,7 +22,10 @@ const AdminProfile = () => {
    
   },[])
   return (
-    <div className={`p-6 min-h-screen my-16`}>
+    <motion.div
+    initial={{ opacity: 0 }}
+    animate={{opacity:1,transition:{duration:2, ease:easeIn}}}
+      className={`p-6 min-h-screen my-16`}>
       <div className="max-w-3xl mx-auto  p-6 rounded-lg shadow-lg">
         <div className="flex items-center space-x-6">
           <img src={singleUser.picPro} alt="Profile" className="w-24 h-24 rounded-full border-4 border-blue-500" />
@@ -47,7 +51,7 @@ const AdminProfile = () => {
           </Link>
         </div>
       </div>
-  </div>
+  </motion.div>
   );
 };
 
