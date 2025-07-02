@@ -1,4 +1,4 @@
-
+import { motion,easeIn } from "motion/react";
 
 const GlobalNews = () => {
   
@@ -23,7 +23,11 @@ const globalNews = [
   },
 ];
   return (
-    <div>
+    <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{opacity:1, y:0, transition:{duration:2, ease:easeIn}}}
+    >
+    
        <div className={`p-6 rounded-lg shadow-md`}>
       <h2 className="text-2xl font-bold mb-4 text-center">🌍 Global News Highlights</h2>
       <div className="grid md:grid-cols-3 gap-6">
@@ -37,7 +41,7 @@ const globalNews = [
         ))}
       </div>
     </div>
-    </div>
+    </motion.div>
   );
 };
 
